@@ -58,6 +58,9 @@
 #+LATEX_HEADER: % Plain text language for listings.
 #+LATEX_HEADER: \lstdefinelanguage{text}{}
 #+LATEX_HEADER:
+#+LATEX_HEADER: % Archibus log language for listings.
+#+LATEX_HEADER: \lstdefinelanguage{ablog}{}
+#+LATEX_HEADER:
 #+LATEX_HEADER: \lstdefinelanguage{conf}{
 #+LATEX_HEADER:   morecomment=[l]{\#},
 #+LATEX_HEADER:   morecomment=[l]{;},
@@ -72,6 +75,9 @@
 #+LATEX_HEADER:   morestring=[b]",
 #+LATEX_HEADER:   morecomment=[l]{\#},
 #+LATEX_HEADER: }
+#+LATEX_HEADER:
+#+LATEX_HEADER: % CSS language for listings.
+#+LATEX_HEADER: \lstdefinelanguage{css}{}
 #+LATEX_HEADER:
 # #+LATEX_HEADER: % A new language must be defined before being loaded.
 # #+LATEX_HEADER: \lstloadlanguages{%
