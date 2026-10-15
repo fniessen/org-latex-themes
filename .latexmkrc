@@ -31,7 +31,7 @@ $xelatex = '';
 # $makeindex = 'texindy -L french -C utf8 %O -o %D %S';
 
 # Current implementation using xindex (French).
-$makeindex = 'xindex -l fr %O -o %D %S';
+$makeindex = 'xindex -l fr %O %S';
 
 # ---------------------------------------------------------
 # General build settings
