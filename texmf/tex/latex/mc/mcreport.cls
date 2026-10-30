@@ -374,6 +374,28 @@
     \setenumerate{labelsep=5mm}
 \fi
 
+\setlist[itemize,1]{%
+    label=\textcolor{mc-color-brand}{\mcsquare},
+    leftmargin=1.25em,
+    labelsep=0.75em,
+    itemsep=3pt,
+    topsep=4pt,
+    parsep=0pt}
+\setlist[itemize,2]{%
+    label=\textcolor{mc-color-brand}{\textbullet},
+    leftmargin=1.25em,
+    labelsep=0.75em,
+    itemsep=3pt,
+    topsep=4pt,
+    parsep=0pt}
+\setlist[itemize,3]{%
+    label=\textcolor{mc-color-brand}{\(\circ\)},
+    leftmargin=1.25em,
+    labelsep=0.75em,
+    itemsep=3pt,
+    topsep=4pt,
+    parsep=0pt}
+
 
 \RequirePackage[framemethod=tikz]{mdframed}
 

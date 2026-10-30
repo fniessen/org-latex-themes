@@ -37,6 +37,15 @@ Content.
 \section*{SectionProbe}
 \subsection*{SubsectionProbe}
 \subsubsection*{SubsubsectionProbe}
+\begin{itemize}
+\item First-level item
+  \begin{itemize}
+  \item Second-level item
+    \begin{itemize}
+    \item Third-level item
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 \section{Section heading in landscape}
 \subsection{Subsection heading in landscape}
 \subsubsection{Subsubsection heading in landscape}
@@ -126,6 +135,9 @@ landscape_chapter_x=$(word_xmin "$WORK_DIR/all-pages.html" '>ChapterProbe</word>
 landscape_section_x=$(word_xmin "$WORK_DIR/all-pages.html" '>SectionProbe</word>')
 landscape_subsection_x=$(word_xmin "$WORK_DIR/all-pages.html" '>SubsectionProbe</word>')
 landscape_subsubsection_x=$(word_xmin "$WORK_DIR/all-pages.html" '>SubsubsectionProbe</word>')
+item_one_x=$(word_xmin "$WORK_DIR/all-pages.html" '>First-level</word>')
+item_two_x=$(word_xmin "$WORK_DIR/all-pages.html" '>Second-level</word>')
+item_three_x=$(word_xmin "$WORK_DIR/all-pages.html" '>Third-level</word>')
 
 if [[ -z $landscape_chapter_x || -z $landscape_section_x ||
     -z $landscape_subsection_x || -z $landscape_subsubsection_x ]] ||
@@ -160,6 +172,21 @@ if ! awk -v chapter="$landscape_chapter_x" \
         "${landscape_section_x:-missing}" \
         "${landscape_subsection_x:-missing}" \
         "${landscape_subsubsection_x:-missing}" >&2
+    exit 1
+fi
+
+if [[ -z $item_one_x || -z $item_two_x || -z $item_three_x ]] ||
+    ! awk -v one="$item_one_x" -v two="$item_two_x" -v three="$item_three_x" '
+    BEGIN {
+        first = two - one
+        second = three - two
+        exit !(first > 10 && first < 35 && second > 10 && second < 35)
+    }
+'; then
+    printf 'Expected nested itemize text to use consistent, compact indentation (level 1 x=%s, level 2 x=%s, level 3 x=%s).\n' \
+        "${item_one_x:-missing}" \
+        "${item_two_x:-missing}" \
+        "${item_three_x:-missing}" >&2
     exit 1
 fi
 

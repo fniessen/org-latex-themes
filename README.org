@@ -99,6 +99,9 @@ with stepped horizontal offsets for chapter, section, subsection, and
 subsubsection headings in landscape mode, and that portrait spacing is restored
 afterward.
 
+Nested itemize lists use compact blue square, filled-circle, and open-circle
+markers at their first three levels.
+
 It requires =lualatex= and =pdftotext=.
 
 * Usage in Org mode
