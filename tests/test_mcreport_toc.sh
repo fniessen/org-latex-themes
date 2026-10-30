@@ -69,6 +69,38 @@ for pass in 1 2; do
     fi
 done
 
+cat > "$WORK_DIR/orphan-heading.tex" <<'EOF'
+\documentclass{mcreport}
+\title{Orphan heading regression}
+\begin{document}
+Some preceding content.
+\vspace*{0.95\textheight}
+\section{Heading stays with content}
+\begin{tabular}{l}
+Following table content.
+\end{tabular}
+\end{document}
+EOF
+
+if ! lualatex \
+    -output-directory="$WORK_DIR" \
+    -interaction=nonstopmode \
+    -halt-on-error \
+    "$WORK_DIR/orphan-heading.tex" \
+    > "$WORK_DIR/orphan-heading.log" 2>&1; then
+    tail -n 50 "$WORK_DIR/orphan-heading.log" >&2
+    exit 1
+fi
+
+pdftotext -f 1 -l 1 "$WORK_DIR/orphan-heading.pdf" "$WORK_DIR/orphan-page-one.txt"
+pdftotext -f 2 -l 2 "$WORK_DIR/orphan-heading.pdf" "$WORK_DIR/orphan-page-two.txt"
+if grep -Fq 'Heading stays with content' "$WORK_DIR/orphan-page-one.txt" ||
+   ! grep -Fq 'Heading stays with content' "$WORK_DIR/orphan-page-two.txt" ||
+   ! grep -Fq 'Following table content' "$WORK_DIR/orphan-page-two.txt"; then
+    printf 'Expected the section heading and following table to start together on page two.\n' >&2
+    exit 1
+fi
+
 toc_file=$WORK_DIR/toc-regression.toc
 if ! grep -Fq \
     '\contentsline {subsubsection}{\numberline {1.1.1.1}Numbered level four}' \

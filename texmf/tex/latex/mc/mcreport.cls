@@ -670,9 +670,18 @@
 
 % select alternative section titles
 \RequirePackage[compact]{titlesec}% (not in medium TeX Live installation)
+\RequirePackage{needspace}
 \titlespacing{\section}      {-2.50cm}{12pt}{9pt} % left, beforesep, aftersep
 \titlespacing{\subsection}   {-1.38cm}{12pt}{6pt}
 \titlespacing{\subsubsection}{-0.5cm}{12pt}{4pt}
+
+% Keep section headings with at least a couple of lines of following content.
+\AddToHook{cmd/chapter/before}{\Needspace{6\baselineskip}}
+\AddToHook{cmd/section/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subsection/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subsubsection/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/paragraph/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subparagraph/before}{\Needspace{4\baselineskip}}
 
 % Use small, stepped title offsets inside landscape pages only.
 \AddToHook{env/landscape/begin}[mcreport-landscape-title-spacing]{%
