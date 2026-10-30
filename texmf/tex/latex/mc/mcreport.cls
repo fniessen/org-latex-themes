@@ -1101,7 +1101,7 @@
 \titlecontents{subsubsection} [\mctocindentsubsubsection]
     {\addvspace{\mctocbeforesubsubsection}}
     {\mctocformatsubsubsection\color{mc-color-section-heading}\contentslabel{\mctoclabelsepsubsubsection}}
-    {\mctocformatsubsubsection\hskip -\mctocindentsubsubsection}
+    {\mctocformatsubsubsection}
     {\mctocformatsubsubsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}
 
 % For tocdepth: part=level -1; chapter=level 0; section= level 1; etc.
