@@ -92,10 +92,14 @@ Run the local regression tests with:
 make check
 #+end_src
 
-The table-of-contents regression test compiles a minimal =mcreport= document
-and checks that numbered and unnumbered level-four entries are included and
-that the unnumbered entry is indented relative to its parent. It requires
-=lualatex= and =pdftotext=.
+The regression test compiles a minimal =mcreport= document and checks that
+numbered and unnumbered level-four entries are included and indented
+consistently. It also checks that section headings stay within the page margins
+with stepped horizontal offsets for chapter, section, subsection, and
+subsubsection headings in landscape mode, and that portrait spacing is restored
+afterward.
+
+It requires =lualatex= and =pdftotext=.
 
 * Usage in Org mode
 

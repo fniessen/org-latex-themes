@@ -900,6 +900,24 @@
     \titlespacing{\subsubsection}{-0.5cm}{12pt}{4pt}
 \fi \fi
 
+% Use small, stepped title offsets inside landscape pages only.
+\AddToHook{env/landscape/begin}[mcreport-landscape-title-spacing]{%
+    \titlespacing*{\chapter}{-0.4cm}{50pt}{\ttl@chapafter}%
+    \if@commercial
+        \titlespacing{\section}{-0.3cm}{10pt}{*0}%
+        \titlespacing{\subsection}{-0.2cm}{10pt}{*0}%
+        \titlespacing{\subsubsection}{-0.1cm}{10pt}{*0}%
+    \else \if@whitepaper
+        \titlespacing{\section}{-0.3cm}{10pt}{*0}%
+        \titlespacing{\subsection}{-0.2cm}{10pt}{*0}%
+        \titlespacing{\subsubsection}{-0.1cm}{10pt}{*0}%
+    \else
+        \titlespacing{\section}{-0.3cm}{12pt}{9pt}%
+        \titlespacing{\subsection}{-0.2cm}{12pt}{6pt}%
+        \titlespacing{\subsubsection}{-0.1cm}{12pt}{4pt}%
+    \fi \fi
+}
+
 % Defining the format of a paragraph heading (we want a line break).
 % Note: needed to redifine the whole font as when using the titleformat
 % command for the paragraph, the font selection done with allsectionsfont was
