@@ -555,7 +555,7 @@ for my college (and also use our color scheme).
 #+begin_src latex
 %* Other packages
 
-\RequirePackage{boostcommon}
+\RequirePackage{boostlistings}
 
 
 % This is for the sake of Emacs.
