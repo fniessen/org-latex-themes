@@ -53,13 +53,9 @@ The placeholders have the following meanings:
   "Sectioning commands for book-like MCit LaTeX classes.")
 
 (defconst org-mc-latex-class-groups
-  `((,org-mc-latex-article-sections
-     "mcarticle"
-     "mccommercial"
-     "mcwhitepaper")
+  `((,org-mc-latex-article-sections "mcarticle")
     (,org-mc-latex-report-sections
      "mcreport"
-     "mcurd"
      "aremis")
     (,org-mc-latex-book-sections
      "mcbook"))

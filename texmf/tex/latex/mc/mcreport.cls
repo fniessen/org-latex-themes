@@ -46,10 +46,8 @@
 %   - standard class to rely on; one option between the three following (which
 %     are mutually exclusive):
 %       + `article',
-%       + `report' (= default),
-%       + `book' or
-%       + `commercial' (for commercial style documents)
-%       + `whitepaper' (for white papers)
+%       + `report' (= default) or
+%       + `book'
 %
 %   - `final', for removing the DRAFT mentions
 %   - `black', for colorizing all titles and links in black only
@@ -73,15 +71,12 @@
 \newif\if@report
 \newif\if@draft
 \newif\if@black
-\newif\if@commercial
-\newif\if@whitepaper
 \newif\if@book
 \newif\if@nocopyright
 \newif\if@mccomment
 \newif\if@anonym
 \newif\if@minitoc
 \newif\if@french
-\newif\if@logointhemargin
 
 % new conditionals are let equal to `\iffalse' initially
 \@reporttrue
@@ -101,22 +96,6 @@
     \@reportfalse%
     \@booktrue%
     \ClassInfo{mcreport}{Saw option `book'}}
-\DeclareOption{commercial}{%
-    \@commercialtrue%
-    \@whitepaperfalse%
-    \@articlefalse%
-    \@reportfalse%
-    \@bookfalse%
-    \@logointhemargintrue%
-    \ClassInfo{mcreport}{Saw option `commercial'}}
-\DeclareOption{whitepaper}{%
-    \@whitepapertrue%
-    \@commercialfalse%
-    \@articlefalse%
-    \@reportfalse%
-    \@bookfalse%
-    \@logointhemargintrue%
-    \ClassInfo{mcreport}{Saw option `whitepaper'}}
 \DeclareOption{nocopyright}{%
     \@nocopyrighttrue%
     \ClassInfo{mcreport}{Saw option `nocopyright'}}
@@ -194,17 +173,13 @@
 
 %* Document Classes (some of the various classes available)
 
-\if@commercial
-    \LoadClass[a4paper,oneside,9pt]{article}
-\else \if@whitepaper
-    \LoadClass[a4paper,oneside,10pt]{article}
-\else \if@article
+\if@article
     \LoadClass[a4paper,oneside,11pt]{article}
 \else \if@report
     \LoadClass[a4paper,oneside,11pt]{report}
 \else
     \LoadClass[a4paper,oneside,11pt]{book}
-\fi \fi \fi \fi
+\fi \fi
 
 % TODO Migrate...!
 % Les packages les plus récents et, semble-t-il, les plus puissants
@@ -225,62 +200,23 @@
 %* Layout (controlling the page layout)
 
 % flexible and complete interface to document dimensions
-\if@commercial
-    \RequirePackage[%
-        a4paper,%
-        dvips,% will set `\pdfpagewidth/height' when run with `pdflatex'
-        left=3.3cm,%
-        right=2.0cm,%
-        top=2.0cm,%
-        headsep=1.0cm,%
-        bottom=2.2cm,%
-        bindingoffset=0cm,%
-        footnotesep=24pt plus 5pt minus 5pt,
-        % showframe,%  --> use showframe package instead?
-        % marginparwidth=65pt,%
-        % marginratio=1:1,%
-        % tmargin=126pt,%
-        % height=550pt,%
-        % width=400pt,%
-    ]{geometry}
-    \RequirePackage[nofligs]{verdana}
-\else \if@whitepaper
-    \RequirePackage[%
-        a4paper,%
-        dvips,% will set `\pdfpagewidth/height' when run with `pdflatex'
-        left=2.3cm,%
-        right=1.5cm,%
-        top=1.8cm,%
-        headsep=1.0cm,%
-        bottom=2.2cm,%
-        bindingoffset=0cm,%
-        footnotesep=24pt plus 5pt minus 5pt,
-        % showframe,%  --> use showframe package instead?
-        % marginparwidth=65pt,%
-        % marginratio=1:1,%
-        % tmargin=126pt,%
-        % height=550pt,%
-        % width=400pt,%
-    ]{geometry}
-\else
-    \RequirePackage[%
-        a4paper,%
-        left=5.5cm,%
-        right=2.0cm,%
-        top=3.3cm,%
-        headsep=2.0cm,%
-        bottom=2.2cm,%
-        bindingoffset=0cm,%
-        footnotesep=24pt plus 5pt minus 5pt,
-        head=27pt,% avoid "Package Fancyhdr Warning: \headheight is too small (12.0pt)"
-        % showframe,%  --> use showframe package instead?
-        % marginparwidth=65pt,%
-        % marginratio=1:1,%
-        % tmargin=126pt,%
-        % height=550pt,%
-        % width=400pt,%
-    ]{geometry}
-\fi \fi
+\RequirePackage[%
+    a4paper,%
+    left=5.5cm,%
+    right=2.0cm,%
+    top=3.3cm,%
+    headsep=2.0cm,%
+    bottom=2.2cm,%
+    bindingoffset=0cm,%
+    footnotesep=24pt plus 5pt minus 5pt,
+    head=27pt,% avoid "Package Fancyhdr Warning: \headheight is too small (12.0pt)"
+    % showframe,%  --> use showframe package instead?
+    % marginparwidth=65pt,%
+    % marginratio=1:1,%
+    % tmargin=126pt,%
+    % height=550pt,%
+    % width=400pt,%
+]{geometry}
 
 % driver-independent color extensions
 \RequirePackage[table]{xcolor}
@@ -295,22 +231,6 @@
     \definecolor{mc-color-cite}{HTML}{000000}
     \definecolor{mc-color-file}{HTML}{000000}
     \definecolor{mc-color-url}{HTML}{000000}
-\else \if@commercial
-    \definecolor{mc-color-document-title}{HTML}{1968BA} % blue
-    \definecolor{mc-color-section-heading}{HTML}{000000}
-    \definecolor{mc-color-section-in-page-heading}{HTML}{000000}
-    \definecolor{mc-color-link}{HTML}{000000}
-    \definecolor{mc-color-cite}{HTML}{000000}
-    \definecolor{mc-color-file}{HTML}{000000}
-    \definecolor{mc-color-url}{HTML}{003399} % darker blue
-\else \if@whitepaper
-    \definecolor{mc-color-document-title}{HTML}{1968BA} % blue
-    \definecolor{mc-color-section-heading}{HTML}{1968BA} % blue
-    \definecolor{mc-color-section-in-page-heading}{HTML}{000000}
-    \definecolor{mc-color-link}{HTML}{000000}
-    \definecolor{mc-color-cite}{HTML}{000000}
-    \definecolor{mc-color-file}{HTML}{000000}
-    \definecolor{mc-color-url}{HTML}{003399} % darker blue
 \else
     \definecolor{mc-color-document-title}{HTML}{1968BA} % blue (XXX)
     \definecolor{mc-color-section-heading}{HTML}{1968BA} % blue (XXX)
@@ -319,7 +239,7 @@
     \definecolor{mc-color-cite}{HTML}{1968BA} % blue
     \definecolor{mc-color-file}{HTML}{003399} % darker blue
     \definecolor{mc-color-url}{HTML}{003399} % darker blue
-\fi \fi \fi
+\fi
 
 \definecolor{shadecolor}{HTML}{33D1FF} % light blue for comments?
 \definecolor{darkred}{HTML}{800000}
@@ -370,15 +290,6 @@
     labelwidth=0pt,
     labelsep=0.5em,
     leftmargin=1.45cm}
-
-% In the commercial style, override some labelsep
-\if@commercial
-    \setenumerate{labelsep=5mm}
-\fi
-
-\if@whitepaper
-    \setenumerate{labelsep=5mm}
-\fi
 
 \RequirePackage[framemethod=tikz]{mdframed}
 
@@ -486,14 +397,8 @@
 
 % make the title appear in sans serif font and in color
 \let\orig@title\title
-
-\if@commercial%
-    \renewcommand{\title}[1]{%
-        \orig@title{\fontfamily{verdana}\selectfont#1}}
-\else%
-    \renewcommand{\title}[1]{%
-        \orig@title{\textsf{#1}}}
-\fi%
+\renewcommand{\title}[1]{%
+    \orig@title{\textsf{#1}}}
 
 % Define subtitle
 
@@ -513,11 +418,9 @@
 \newcommand{\mctitlegraphic}[1]{\def\@mctitlegraphic{#1}}
 \if@anonym%
     \mctitlegraphic{}
-\else \if@commercial%
-    \mctitlegraphic{}
 \else%
     \mctitlegraphic{}
-\fi \fi%
+\fi%
 
 % \logo and \titlegraphic define client logo and title graphics.
 % By default, \logo also defines the titlegraphic.
@@ -526,15 +429,6 @@
 
 \newcommand{\titlegraphic}[1]{\def\@titlegraphic{#1}}
 \titlegraphic{}
-
-% To customize the small MC logo (displayed in the left margin in the
-% commercial style), simply call the \mclogo{XXX} command.
-\newcommand{\mclogo}[1]{\def\@mclogo{#1}}
-\if@anonym%
-    \mclogo{}
-\else%
-    \mclogo{\includegraphics[width=1cm]{MC}}
-\fi%
 
 % changing margins "on the fly" (in mid document)
 \newenvironment{mcchangemargin}[2]%
@@ -551,43 +445,7 @@
 % TODO Plutôt que la commande \maketitle, qui est assez peu "customisable",
 % utiliser l'environnement titlepage...
 %
-\if@commercial
-    \renewcommand{\maketitle}{%
-        \thispagestyle{plain}%
-        \begin{center}
-            \@mctitlegraphic
-            \vskip 5mm
-            {\huge \color{mc-color-document-title}\textbf{\@title}\par}%
-            \ifx \@subtitle \@empty%
-                \relax
-            \else%
-                {\normalsize\bfseries\@subtitle}
-            \fi%
-            \vskip 1cm
-        \end{center}%
-}
-\else \if@whitepaper
-    \renewcommand{\maketitle}{%
-        \thispagestyle{plain}%
-        \\
-        \textbf{For more information, contact:} \\
-        Michel Vanden Bossche-Marquette, Co-Founder \& CEO \\
-        Mission Critical IT \\
-        \url{mailto:mvb@missioncriticalit.com} or +32 2-757.10.15
-
-        \textbf{For Immediate Release}
-        \begin{center}
-            \vskip 5mm
-            {\LARGE \color{mc-color-document-title}\textbf{\@title}\par}%
-            \ifx \@subtitle \@empty%
-                \relax
-            \else%
-                {\small\@subtitle}
-            \fi%
-            \vskip 1cm
-        \end{center}%
-}
-\else \if@article
+\if@article
     \renewcommand{\maketitle}{%
         \thispagestyle{plain}
          \begin{center}
@@ -654,7 +512,7 @@
     \null
     \clearpage
 }
-\fi \fi \fi
+\fi
 % TODO Put a document log in every report...
 
 
@@ -663,38 +521,21 @@
 \ClassInfo{mcreport}{Using fancier footers than usual}
 
 \newcommand{\footfont}{
-\if@commercial
-    \fontsize{7pt}{0pt}\fontfamily{verdana}\selectfont
-\else
     \fontsize{7pt}{0pt}\sffamily\selectfont
-\fi
 }
 \newcommand{\headfont}{
-\if@commercial
-    \fontsize{8pt}{8pt}\fontfamily{verdana}\selectfont
-\else
     \fontsize{8pt}{8pt}\sffamily\selectfont
-\fi
 }
 
 % MC page headers definition
 \newcommand{\mcheadl}{
-    \if@logointhemargin
-        \hskip -2cm
-        \raisebox{-7mm}[0mm][-7mm]{\@mclogo}\hskip 1cm
-    \else
-        \headfont\textsc{\@title}
-    \fi}
+    \headfont\textsc{\@title}}
 \newcommand{\mcheadr}{\headfont%
-    \if@commercial
-        \textsc{\@title}%
-    \else \if@whitepaper
-        \@title%
-    \else \if@article
+    \if@article
         \@subtitle%
     \else
         \leftmark%
-    \fi \fi \fi}
+    \fi}
 \newcommand{\mcheadc}{}
 
 \newcommand{\mccopyright}{%
@@ -705,24 +546,12 @@
     \fi
 }
 
-% MC page footers definition
-\if@whitepaper
-    \newcommand{\mcfootl}{}
-    \newcommand{\mcfootc}{\footfont%
-        \color{mc-color-section-heading}%
-        \textbf{Mission Critical IT \textbullet} \url{www.missioncriticalit.com}\\
-        a division of Information Systems Consult S.A. 0425.189.602\\
-        \textbf{Corporate Office Belgium --} Square de Mee\^us, 38-40 B-1000 Brussels \textbullet\, Phone +32 2 757 10 15\\
-        \textbf{Development Office Australia --} 208 Capel Street, North Melbourne, 3051 Victoria \textbullet\, Phone +61 424 651 834}
-    \newcommand{\mcfootr}{}
-\else
-    \newcommand{\mcfootl}{\footfont\raisebox{0.25mm}[0mm][-0.25mm]{\mccopyright}\@mctextlogo}
-    \newcommand{\mcfootc}{\footfont\@date
-      \if@draft
-      \\\bf -- DRAFT --
-      \fi}
-    \newcommand{\mcfootr}{\footfont\thepage}
-\fi
+\newcommand{\mcfootl}{\footfont\raisebox{0.25mm}[0mm][-0.25mm]{\mccopyright}\@mctextlogo}
+\newcommand{\mcfootc}{\footfont\@date
+  \if@draft
+  \\\bf -- DRAFT --
+  \fi}
+\newcommand{\mcfootr}{\footfont\thepage}
 
 
 \fancypagestyle{empty}{%
@@ -733,46 +562,26 @@
 
 \fancypagestyle{plain}{%
     \fancyhf{} % clear all header and footer fields
-    \if@commercial
-    \else \if@whitepaper
-    \else
-        \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
-    \fi \fi
+    \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
     \renewcommand{\headrulewidth}{0.0pt}
     \fancyfoot[L]{\mcfootl{}}
     \fancyfoot[C]{\mcfootc{}}
     \fancyfoot[R]{\mcfootr{}}
-    \if@whitepaper
-    \renewcommand{\footrulewidth}{0.0pt}
-    \else
     \renewcommand{\footrulewidth}{0.4pt}
-    \fi
 }
 
 % TODO Put the headers and footers in some gray (#BBC9C9)
 \fancypagestyle{headings}{%
     \fancyhf{} % clear all header and footer fields
-    \if@commercial
-    \else \if@whitepaper
-    \else
-        \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
-    \fi \fi
+    \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
     \fancyhead[L]{\mcheadl{}}
     \fancyhead[R]{\mcheadr{}}
     \fancyhead[C]{\mcheadc{}}
     \renewcommand{\headrulewidth}{0.4pt}
     \fancyfoot[L]{\mcfootl{}}
-    \if@whitepaper
-        \fancyfoot[C]{\footfont\thepage}
-    \else
-        \fancyfoot[C]{\mcfootc{}}
-    \fi
+    \fancyfoot[C]{\mcfootc{}}
     \fancyfoot[R]{\mcfootr{}}
-    \if@whitepaper
-        \renewcommand{\footrulewidth}{0.0pt}
-    \else
-        \renewcommand{\footrulewidth}{0.4pt}
-    \fi
+    \renewcommand{\footrulewidth}{0.4pt}
 }
 
 \pagestyle{headings}
@@ -855,72 +664,22 @@
 % control sectional headers
 \RequirePackage{sectsty}% (not in medium TeX Live installation)
 % redefine the font used for all section headings
-\if@commercial
-    \allsectionsfont{\usefont{T1}{verdana}{b}{n}\selectfont% Verdana Bold
-        \color{mc-color-section-heading}% make all section headings colored
-        \nobreak}% because `\color' inserts a breakpoint
-\else
-    \allsectionsfont{\usefont{T1}{phv}{b}{n}\selectfont% Helvetica-Narrow Bold
-        \color{mc-color-section-heading}% make all section headings colored
-        \nobreak}% because `\color' inserts a breakpoint
-\fi
+\allsectionsfont{\usefont{T1}{phv}{b}{n}\selectfont% Helvetica-Narrow Bold
+    \color{mc-color-section-heading}% make all section headings colored
+    \nobreak}% because `\color' inserts a breakpoint
 
 % select alternative section titles
 \RequirePackage[compact]{titlesec}% (not in medium TeX Live installation)
-\if@commercial
-    \titlespacing{\section}{-0.8cm}{10pt}{*0} % left, beforesep, aftersep
-    \titlespacing{\subsection}{-0.8cm}{10pt}{*0}
-    \titlespacing{\subsubsection}{-0.8cm}{10pt}{*0}
-    \titleformat{\section}
-        {\fontsize{12pt}{14pt}\selectfont\bfseries}
-        {\thesection.}
-        {3mm}
-        {}
-    \titleformat{\subsection}
-        {\fontsize{10pt}{10pt}\selectfont\bfseries}
-        {\thesubsection.}
-        {3mm}
-        {}
-    % redefine the sectioning commands to get rid of spurious space after them
-    % caused by the `parskip' package
-\else \if@whitepaper
-        \titlespacing{\section}{-0.8cm}{10pt}{*0} % left, beforesep, aftersep
-        \titlespacing{\subsection}{-0.8cm}{10pt}{*0}
-        \titlespacing{\subsubsection}{-0.8cm}{10pt}{*0}
-        \titleformat{\section}
-        {\fontsize{15pt}{18pt}\selectfont\sffamily\bfseries\color{mc-color-section-heading}}
-        {\thesection.}
-        {3mm}
-        {}
-        \titleformat{\subsection}
-        {\fontsize{12pt}{14.4pt}\selectfont\sffamily\bfseries\color{mc-color-section-heading}}
-        {\thesubsection.}
-        {1mm}
-        {}
-        % redefine the sectioning commands to get rid of spurious space after them
-        % caused by the `parskip' package
-\else % article, report or book
-    \titlespacing{\section}      {-2.50cm}{12pt}{9pt} % left, beforesep, aftersep
-    \titlespacing{\subsection}   {-1.38cm}{12pt}{6pt}
-    \titlespacing{\subsubsection}{-0.5cm}{12pt}{4pt}
-\fi \fi
+\titlespacing{\section}      {-2.50cm}{12pt}{9pt} % left, beforesep, aftersep
+\titlespacing{\subsection}   {-1.38cm}{12pt}{6pt}
+\titlespacing{\subsubsection}{-0.5cm}{12pt}{4pt}
 
 % Use small, stepped title offsets inside landscape pages only.
 \AddToHook{env/landscape/begin}[mcreport-landscape-title-spacing]{%
     \titlespacing*{\chapter}{-0.4cm}{50pt}{\ttl@chapafter}%
-    \if@commercial
-        \titlespacing{\section}{-0.3cm}{10pt}{*0}%
-        \titlespacing{\subsection}{-0.2cm}{10pt}{*0}%
-        \titlespacing{\subsubsection}{-0.1cm}{10pt}{*0}%
-    \else \if@whitepaper
-        \titlespacing{\section}{-0.3cm}{10pt}{*0}%
-        \titlespacing{\subsection}{-0.2cm}{10pt}{*0}%
-        \titlespacing{\subsubsection}{-0.1cm}{10pt}{*0}%
-    \else
-        \titlespacing{\section}{-0.3cm}{12pt}{9pt}%
-        \titlespacing{\subsection}{-0.2cm}{12pt}{6pt}%
-        \titlespacing{\subsubsection}{-0.1cm}{12pt}{4pt}%
-    \fi \fi
+    \titlespacing{\section}{-0.3cm}{12pt}{9pt}%
+    \titlespacing{\subsection}{-0.2cm}{12pt}{6pt}%
+    \titlespacing{\subsubsection}{-0.1cm}{12pt}{4pt}%
 }
 
 % Defining the format of a paragraph heading (we want a line break).
@@ -947,9 +706,6 @@
 % It is the baselineskip. A good value depends on the look of the font but
 % 1.2 * size of the font is generally OK.
 
-\if@commercial
-\else \if@whitepaper
-\else
 \def\@seccntformat#1{%
     \expandafter%
     \ifx\csname#1\endcsname\section
@@ -958,7 +714,6 @@
         \csname the#1\endcsname\quad % new definition for the others
     \fi
 }
-\fi \fi
 
 %% TODO Replace the previous by this?
 % \titleformat{\section}
@@ -1175,24 +930,8 @@
     \setsansfont[Scale=MatchLowercase]{Tahoma}
     \setmonofont[Scale=MatchLowercase]{Courier New}
 \else
-    \if@whitepaper%
-        \RequirePackage{lmodern}%
-    \else%
-        \RequirePackage{times}%
-    \fi%
+\RequirePackage{times}%
 \fi%
-
-\if@commercial%
-    \AtBeginDocument{%
-        \fontfamily{vnax}\fontsize{9pt}{2ex}\selectfont%
-    }%
-\fi%
-% Is the purpose of a business plan to attract investors or convince a bank or
-% something? If it was, I'd probably change the typeface selection so that it
-% wasn't all in `Times'. Nothing radical, but maybe a slightly more flavorful
-% sans serif for headings, and a serif body typeface with a tiny bit more
-% character. Could be for example `Frutiger' and `Baskerville'. STILL PRETTY
-% RESTRAINED, JUST NOT IDENTICAL TO MOST OF THE BUSINESS PLANS THEY SEE.
 
 %% use scalable, PostScript Type 1 versions of the Computer Modern fonts
 % \RequirePackage{type1cm}
@@ -1312,11 +1051,6 @@
 
 % mcdocument
 \RequirePackage{mcdocument}%
-
-% For commercial style keep original definition of href
-\if@commercial%
-    \renewcommand\href[2]{\orig@href{#1}{#2}}% href
-\fi%
 
 % Define the numprint thousand separator.
 % XXX This could be done by defining the correct style per language with
