@@ -84,6 +84,19 @@ The project goals are:
 - centralize recurring LaTeX settings,
 - offer Beamer themes consistent with the document classes.
 
+* Run the checks
+
+Run the local regression tests with:
+
+#+begin_src shell
+make check
+#+end_src
+
+The table-of-contents regression test compiles a minimal =mcreport= document
+and checks that numbered and unnumbered level-four entries are included and
+that the unnumbered entry is indented relative to its parent. It requires
+=lualatex= and =pdftotext=.
+
 * Usage in Org mode
 
 ** LaTeX installation
