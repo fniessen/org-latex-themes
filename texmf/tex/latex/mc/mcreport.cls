@@ -925,6 +925,10 @@
 \else
     \RequirePackage[T1]{fontenc}
 \fi
+\RequirePackage{textcomp}
+\RequirePackage{newunicodechar}
+\newunicodechar{”}{\textquotedblright}
+\newunicodechar{’}{\textquoteright}
 
 % \RequirePackage[scaled=.90]{helvet}
 % \RequirePackage{courier}

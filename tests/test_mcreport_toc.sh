@@ -76,6 +76,7 @@ cat > "$WORK_DIR/orphan-heading.tex" <<'EOF'
 Some preceding content.
 \vspace*{0.95\textheight}
 \section{Heading stays with content}
+A typographic closing quote: ” and apostrophe: ’.
 \begin{tabular}{l}
 Following table content.
 \end{tabular}
@@ -89,6 +90,11 @@ if ! lualatex \
     "$WORK_DIR/orphan-heading.tex" \
     > "$WORK_DIR/orphan-heading.log" 2>&1; then
     tail -n 50 "$WORK_DIR/orphan-heading.log" >&2
+    exit 1
+fi
+
+if grep -Eq 'Missing character: There is no [”’] \(U\+201[9D]\)' "$WORK_DIR/orphan-heading.log"; then
+    printf 'Expected the class to render Unicode typographic quotes without missing-character warnings.\n' >&2
     exit 1
 fi
 
