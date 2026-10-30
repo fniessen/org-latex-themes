@@ -361,9 +361,9 @@
     itemsep=3pt,
     topsep=4pt,
     parsep=0pt}
-\setitemize[1]{label=\textcolor{mc-color-brand}{\mcsquare}}
-\setitemize[2]{label=\textcolor{mc-color-brand}{\textbullet}}
-\setitemize[3]{label=\textcolor{mc-color-brand}{\(\circ\)}}
+\setitemize[1]{label=\textcolor{mc-color-brand}{\rule[.1ex]{1ex}{1ex}}}
+\setitemize[2]{label=\textcolor{mc-color-brand}{\raisebox{.1ex}{\textbullet}}}
+\setitemize[3]{label=\textcolor{mc-color-brand}{\raisebox{.1ex}{\scalebox{.8}{\(\circ\)}}}}
 \setdescription{%
 %     style=nextline,
     font=\sffamily\bfseries,%
