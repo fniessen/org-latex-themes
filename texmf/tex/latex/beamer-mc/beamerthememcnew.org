@@ -9,7 +9,7 @@
 #+PROPERTY:  comments link
 #+PROPERTY:  noweb yes
 
-#+SETUPFILE: ~/org/html-theme-bigblow.setup
+#+SETUPFILE: ~/org/setup/html-theme-bigblow.setup
 
 * Copyright
 

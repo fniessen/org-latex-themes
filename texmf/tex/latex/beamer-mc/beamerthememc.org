@@ -9,7 +9,7 @@
 #+PROPERTY:  eval never
 #+PROPERTY:  comments no
 #+PROPERTY:  tangle beamerthememc.sty
-#+SETUPFILE: ~/org/html-theme-bigblow.setup
+#+SETUPFILE: ~/org/setup/html-theme-bigblow.setup
 
 * Tasks
 
