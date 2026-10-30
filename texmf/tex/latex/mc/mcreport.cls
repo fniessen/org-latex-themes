@@ -1,6 +1,6 @@
 %% mcreport.cls -- LaTeX2e MC report class
 %
-% Copyright (C) 2008-2023 Fabrice Niessen. All rights reserved.
+% Copyright (C) 2008-2026 Fabrice Niessen. All rights reserved.
 
 %* TODO
 %
@@ -265,7 +265,6 @@
 \else
     \RequirePackage[%
         a4paper,%
-        dvips,% will set `\pdfpagewidth/height' when run with `pdflatex'
         left=5.5cm,%
         right=2.0cm,%
         top=3.3cm,%
@@ -273,7 +272,7 @@
         bottom=2.2cm,%
         bindingoffset=0cm,%
         footnotesep=24pt plus 5pt minus 5pt,
-        head=14pt,% avoid "Package Fancyhdr Warning: \headheight is too small (12.0pt)"
+        head=27pt,% avoid "Package Fancyhdr Warning: \headheight is too small (12.0pt)"
         % showframe,%  --> use showframe package instead?
         % marginparwidth=65pt,%
         % marginratio=1:1,%
@@ -896,9 +895,9 @@
         % redefine the sectioning commands to get rid of spurious space after them
         % caused by the `parskip' package
 \else % article, report or book
-    \titlespacing{\section}{-2.50cm}{12pt}{*0} % left, beforesep, aftersep
-    \titlespacing{\subsection}{-1.38cm}{12pt}{*0}
-    \titlespacing{\subsubsection}{-0.5cm}{12pt}{*0}
+    \titlespacing{\section}      {-2.50cm}{12pt}{9pt} % left, beforesep, aftersep
+    \titlespacing{\subsection}   {-1.38cm}{12pt}{6pt}
+    \titlespacing{\subsubsection}{-0.5cm}{12pt}{4pt}
 \fi \fi
 
 % Defining the format of a paragraph heading (we want a line break).
