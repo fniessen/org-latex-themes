@@ -1,4 +1,4 @@
-# boost-org-latex-toolkit - Project Guidelines
+# org-latex-themes - Project Guidelines
 
 ## Context and sources
 

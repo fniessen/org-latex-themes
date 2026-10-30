@@ -57,7 +57,7 @@ Directory structure compliant with a local TeX installation.
 
 Custom LaTeX classes and styles:
 
-- =.cls= classes (article, report, book, CV, contract, etc.),
+- =.cls= classes (article, report, book),
 - shared =.sty= style files.
 
 These files define a coherent family of LaTeX documents under the "boost" prefix.
@@ -123,7 +123,7 @@ Make Org export use the =boostreport= class by adding the Lisp file to your Emac
 configuration:
 
 #+begin_src emacs-lisp
-(add-to-list 'load-path "/PATH/TO/boost-org-latex-toolkit/lisp")
+(add-to-list 'load-path "/path/to/org-latex-themes/lisp")
 (require 'org-boost-latex-classes)
 #+end_src
 
@@ -174,8 +174,8 @@ You may include the =.setup= files (provided in the =org/= directory) in an Org 
 with:
 
 #+begin_src org
-,#+SETUPFILE: /PATH/TO/boost-org-latex-toolkit/org/setup/latex-hyperref.setup
-,#+SETUPFILE: /PATH/TO/boost-org-latex-toolkit/org/setup/latex-listings.setup
+,#+SETUPFILE: /path/to/org-latex-themes/org/setup/latex-hyperref.setup
+,#+SETUPFILE: /path/to/org-latex-themes/org/setup/latex-listings.setup
 #+end_src
 
 The exact behavior depends on the content of each =.setup= file.
