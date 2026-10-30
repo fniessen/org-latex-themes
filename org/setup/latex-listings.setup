@@ -20,41 +20,41 @@
 #+LATEX_HEADER: % Colors.
 #+LATEX_HEADER: % --------------------------------------------------------------
 #+LATEX_HEADER: \usepackage{xcolor}
-#+LATEX_HEADER: \definecolor{mc@lstidentifier}{HTML}{000000} % Black.
-#+LATEX_HEADER: \definecolor{mc@lstcomment}{HTML}{008200}    % Green.
-#+LATEX_HEADER: \definecolor{mc@lststring}{HTML}{FF5500}     % Orange.
-#+LATEX_HEADER: \definecolor{mc@lstkeyword}{HTML}{0000FF}    % Blue.
-#+LATEX_HEADER: \definecolor{mc@lstbackground}{HTML}{FFFDE7} % Warm light yellow.
-#+LATEX_HEADER: \definecolor{mc@lstframe}{HTML}{F0E6A0}      % Soft yellow border.
+#+LATEX_HEADER: \definecolor{boost@lstidentifier}{HTML}{000000} % Black.
+#+LATEX_HEADER: \definecolor{boost@lstcomment}{HTML}{008200}    % Green.
+#+LATEX_HEADER: \definecolor{boost@lststring}{HTML}{FF5500}     % Orange.
+#+LATEX_HEADER: \definecolor{boost@lstkeyword}{HTML}{0000FF}    % Blue.
+#+LATEX_HEADER: \definecolor{boost@lstbackground}{HTML}{FFFDE7} % Warm light yellow.
+#+LATEX_HEADER: \definecolor{boost@lstframe}{HTML}{F0E6A0}      % Soft yellow border.
 #+LATEX_HEADER:
-#+LATEX_HEADER: \definecolor{mc@lstgitcmd}{HTML}{0000FF}      % Blue: git, cd, ls, ...
-#+LATEX_HEADER: \definecolor{mc@lstgitsubcmd}{HTML}{008080}   % Teal: commit, log, merge, ...
-#+LATEX_HEADER: \definecolor{mc@lstgitopt}{HTML}{CC5500}      % Dark orange: graph, oneline, cached, ...
-#+LATEX_HEADER: \definecolor{mc@lstgitref}{HTML}{008200}      % Green: HEAD, origin/main, ...
-#+LATEX_HEADER: \definecolor{mc@lstgitshortopt}{HTML}{AA0000} % Dark red: a, p, v, m, am, ...
-#+LATEX_HEADER: \definecolor{mc@lstgboost}{HTML}{9900CC}      % Purple: GitBoost aliases.
+#+LATEX_HEADER: \definecolor{boost@lstgitcmd}{HTML}{0000FF}      % Blue: git, cd, ls, ...
+#+LATEX_HEADER: \definecolor{boost@lstgitsubcmd}{HTML}{008080}   % Teal: commit, log, merge, ...
+#+LATEX_HEADER: \definecolor{boost@lstgitopt}{HTML}{CC5500}      % Dark orange: graph, oneline, cached, ...
+#+LATEX_HEADER: \definecolor{boost@lstgitref}{HTML}{008200}      % Green: HEAD, origin/main, ...
+#+LATEX_HEADER: \definecolor{boost@lstgitshortopt}{HTML}{AA0000} % Dark red: a, p, v, m, am, ...
+#+LATEX_HEADER: \definecolor{boost@lstgboost}{HTML}{9900CC}      % Purple: GitBoost aliases.
 #+LATEX_HEADER:
 #+LATEX_HEADER: % Colors for diff listings.
-#+LATEX_HEADER: \definecolor{mc@diffstart}{HTML}{666666}   % Gray.
-#+LATEX_HEADER: \definecolor{mc@diffadded}{HTML}{008200}   % Green.
-#+LATEX_HEADER: \definecolor{mc@diffremoved}{HTML}{CC0000} % Red.
+#+LATEX_HEADER: \definecolor{boost@diffstart}{HTML}{666666}   % Gray.
+#+LATEX_HEADER: \definecolor{boost@diffadded}{HTML}{008200}   % Green.
+#+LATEX_HEADER: \definecolor{boost@diffremoved}{HTML}{CC0000} % Red.
 #+LATEX_HEADER:
 #+LATEX_HEADER: \definecolor{TeXbackgroundcolor}{HTML}{F1F9EF} % Very light green.
 #+LATEX_HEADER: \definecolor{TeXrulecolor}{HTML}{D4E8E3}       % Pale green.
 #+LATEX_HEADER:
-#+LATEX_HEADER: \definecolor{mc@examplebackground}{HTML}{EAF7EA} % Very light green.
-#+LATEX_HEADER: \definecolor{mc@exampleframe}{HTML}{A8D5A8}      % Light green.
+#+LATEX_HEADER: \definecolor{boost@examplebackground}{HTML}{EAF7EA} % Very light green.
+#+LATEX_HEADER: \definecolor{boost@exampleframe}{HTML}{A8D5A8}      % Light green.
 #+LATEX_HEADER:
 #+LATEX_HEADER: % --------------------------------------------------------------
 #+LATEX_HEADER: % Languages.
 #+LATEX_HEADER: % --------------------------------------------------------------
 #+LATEX_HEADER: % Diff language for listings.
 #+LATEX_HEADER: \lstdefinelanguage{diff}{%
-#+LATEX_HEADER:   morecomment=[f][\color{mc@diffstart}]{@@},% Hunk headers.
-#+LATEX_HEADER:   morecomment=[f][\color{mc@diffremoved}]-,% Removed lines.
-#+LATEX_HEADER:   morecomment=[f][\color{mc@diffadded}]+,% Added lines.
-#+LATEX_HEADER:   morecomment=[f][\color{mc@diffstart}]{---},% File headers (old).
-#+LATEX_HEADER:   morecomment=[f][\color{mc@diffstart}]{+++},% File headers (new).
+#+LATEX_HEADER:   morecomment=[f][\color{boost@diffstart}]{@@},% Hunk headers.
+#+LATEX_HEADER:   morecomment=[f][\color{boost@diffremoved}]-,% Removed lines.
+#+LATEX_HEADER:   morecomment=[f][\color{boost@diffadded}]+,% Added lines.
+#+LATEX_HEADER:   morecomment=[f][\color{boost@diffstart}]{---},% File headers (old).
+#+LATEX_HEADER:   morecomment=[f][\color{boost@diffstart}]{+++},% File headers (new).
 #+LATEX_HEADER: }
 #+LATEX_HEADER:
 #+LATEX_HEADER: % Plain text language for listings.
@@ -218,12 +218,12 @@
 #+LATEX_HEADER:     wshow,
 #+LATEX_HEADER:     wwflu
 #+LATEX_HEADER:   },
-#+LATEX_HEADER:   keywordstyle=[1]\color{mc@lstgitcmd}\bfseries,
-#+LATEX_HEADER:   keywordstyle=[2]\color{mc@lstgitcmd}\bfseries,
-#+LATEX_HEADER:   keywordstyle=[3]\color{mc@lstgitopt},
-#+LATEX_HEADER:   keywordstyle=[4]\color{mc@lstgitref}\bfseries,
-#+LATEX_HEADER:   keywordstyle=[5]\color{mc@lstgitshortopt}\bfseries,
-#+LATEX_HEADER:   keywordstyle=[6]\color{mc@lstgboost}\bfseries,
+#+LATEX_HEADER:   keywordstyle=[1]\color{boost@lstgitcmd}\bfseries,
+#+LATEX_HEADER:   keywordstyle=[2]\color{boost@lstgitcmd}\bfseries,
+#+LATEX_HEADER:   keywordstyle=[3]\color{boost@lstgitopt},
+#+LATEX_HEADER:   keywordstyle=[4]\color{boost@lstgitref}\bfseries,
+#+LATEX_HEADER:   keywordstyle=[5]\color{boost@lstgitshortopt}\bfseries,
+#+LATEX_HEADER:   keywordstyle=[6]\color{boost@lstgboost}\bfseries,
 #+LATEX_HEADER:   %
 #+LATEX_HEADER:   % Treat lines starting with '#' as shell comments.
 #+LATEX_HEADER:   morecomment=[l]{\#},
@@ -263,10 +263,10 @@
 #+LATEX_HEADER:   \BeginAccSupp{ActualText={}}#1\EndAccSupp{}%
 #+LATEX_HEADER: }
 #+LATEX_HEADER:
-#+LATEX_HEADER: \definecolor{mc@lstlinenumber}{gray}{0.75}
+#+LATEX_HEADER: \definecolor{boost@lstlinenumber}{gray}{0.75}
 #+LATEX_HEADER:
 #+LATEX_HEADER: \newcommand{\lstnumberstyle}{%
-#+LATEX_HEADER:   \color{mc@lstlinenumber}%
+#+LATEX_HEADER:   \color{boost@lstlinenumber}%
 #+LATEX_HEADER:   \tiny\ttfamily\emptyaccsupp
 #+LATEX_HEADER: }
 #+LATEX_HEADER:
@@ -277,10 +277,10 @@
 #+LATEX_HEADER:   lineskip=-0.1em,
 #+LATEX_HEADER:   %
 #+LATEX_HEADER:   basicstyle=\ttfamily\scriptsize, % Font used for code.
-#+LATEX_HEADER:   identifierstyle=\color{mc@lstidentifier},
-#+LATEX_HEADER:   commentstyle=\color{mc@lstcomment}\itshape,
-#+LATEX_HEADER:   stringstyle=\color{mc@lststring},
-#+LATEX_HEADER:   keywordstyle=\color{mc@lstkeyword},
+#+LATEX_HEADER:   identifierstyle=\color{boost@lstidentifier},
+#+LATEX_HEADER:   commentstyle=\color{boost@lstcomment}\itshape,
+#+LATEX_HEADER:   stringstyle=\color{boost@lststring},
+#+LATEX_HEADER:   keywordstyle=\color{boost@lstkeyword},
 #+LATEX_HEADER:   %
 #+LATEX_HEADER:   upquote,
 #+LATEX_HEADER:   tabsize=4, % Set the default tab size to 4 spaces.
@@ -303,8 +303,8 @@
 #+LATEX_HEADER:   frame=single, % Draw a frame around listings.
 #+LATEX_HEADER:   framexleftmargin=0pt, % Left frame margin.
 #+LATEX_HEADER:   framexrightmargin=0pt, % Right frame margin.
-#+LATEX_HEADER:   backgroundcolor=\color{mc@lstbackground}, % Background color.
-#+LATEX_HEADER:   rulecolor=\color{mc@lstframe}, % Frame color.
+#+LATEX_HEADER:   backgroundcolor=\color{boost@lstbackground}, % Background color.
+#+LATEX_HEADER:   rulecolor=\color{boost@lstframe}, % Frame color.
 #+LATEX_HEADER:   %
 #+LATEX_HEADER:   columns=flexible, % Use flexible character widths instead of fixed columns.
 #+LATEX_HEADER:   keepspaces=true, % Preserve consecutive spaces and indentation.

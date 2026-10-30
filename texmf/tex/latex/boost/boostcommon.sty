@@ -1,11 +1,11 @@
-%% mccommon.sty -- LaTeX2e MC common commands and environments
+%% boostcommon.sty -- LaTeX2e Boost common commands and environments
 %
 % Copyright (C) 2008-2014 Fabrice Niessen. All rights reserved.
 
 %* --[ Identification --------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mccommon}[2025/01/05 v1.0 MCit Common stuff between documents and presentations]
+\ProvidesPackage{boostcommon}[2025/01/05 v1.0 Boost Common stuff between documents and presentations]
 
 \RequirePackage[iso]{datetime}
 
@@ -15,12 +15,12 @@
 \RequirePackage{listings}
 
 \RequirePackage{xcolor}
-\definecolor{mc@lstidentifier}{HTML}{000000} % black
-\definecolor{mc@lstcomment}{HTML}{008200} % green
-\definecolor{mc@lststring}{HTML}{FF5500} % orange
-\definecolor{mc@lstkeyword}{HTML}{0000FF} % blue
-\definecolor{mc@lstbackground}{HTML}{FFFFCC} % light yellow
-\definecolor{mc@lstframe}{HTML}{FFEE88} % dark yellow
+\definecolor{boost@lstidentifier}{HTML}{000000} % black
+\definecolor{boost@lstcomment}{HTML}{008200} % green
+\definecolor{boost@lststring}{HTML}{FF5500} % orange
+\definecolor{boost@lstkeyword}{HTML}{0000FF} % blue
+\definecolor{boost@lstbackground}{HTML}{FFFFCC} % light yellow
+\definecolor{boost@lstframe}{HTML}{FFEE88} % dark yellow
 
 \lstdefinelanguage{fundamental}{}
 
@@ -93,10 +93,10 @@
   lineskip=-0.1em,
   %
   basicstyle=\ttfamily\scriptsize, % font that is used for the code
-  identifierstyle=\color{mc@lstidentifier},
-  commentstyle=\color{mc@lstcomment}\itshape,
-  stringstyle=\color{mc@lststring},
-  keywordstyle=\color{mc@lstkeyword},
+  identifierstyle=\color{boost@lstidentifier},
+  commentstyle=\color{boost@lstcomment}\itshape,
+  stringstyle=\color{boost@lststring},
+  keywordstyle=\color{boost@lstkeyword},
   %
   extendedchars=true,
   inputencoding=utf8,
@@ -120,8 +120,8 @@
   frame=single, % add a frame around the code
   framexleftmargin=0pt, % frame back to the left
   framexrightmargin=0pt, % frame back to the right
-  backgroundcolor=\color{mc@lstbackground}, % set the background color
-  rulecolor=\color{mc@lstframe}, % frame color
+  backgroundcolor=\color{boost@lstbackground}, % set the background color
+  rulecolor=\color{boost@lstframe}, % frame color
   %
   columns=flexible, % try not to ruin the spacing intended by the font designer
   keepspaces=true, % don't drop spaces to fix column alignment
@@ -189,4 +189,4 @@
 % time-stamp-end: " "
 % End:
 
-%% mccommon.sty ends here
+%% boostcommon.sty ends here

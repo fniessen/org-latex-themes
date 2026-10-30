@@ -3,8 +3,8 @@
 set -Eeuo pipefail
 
 REPO_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
-CLASS_DIR=$REPO_DIR/texmf/tex/latex/mc
-WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/mcreport-toc-test.XXXXXX")
+CLASS_DIR=$REPO_DIR/texmf/tex/latex/boost
+WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/boostreport-toc-test.XXXXXX")
 trap 'rm -rf -- "$WORK_DIR"' EXIT
 
 for command in lualatex pdftotext awk; do
@@ -15,7 +15,7 @@ for command in lualatex pdftotext awk; do
 done
 
 cat > "$WORK_DIR/toc-regression.tex" <<'EOF'
-\documentclass{mcreport}
+\documentclass{boostreport}
 \usepackage{pdflscape}
 \title{TOC regression}
 \setcounter{secnumdepth}{3}
@@ -70,7 +70,7 @@ for pass in 1 2; do
 done
 
 cat > "$WORK_DIR/orphan-heading.tex" <<'EOF'
-\documentclass{mcreport}
+\documentclass{boostreport}
 \title{Orphan heading regression}
 \begin{document}
 Some preceding content.
@@ -237,4 +237,4 @@ if [[ -z $portrait_heading_x || -z $portrait_after_x ]] ||
     exit 1
 fi
 
-printf 'mcreport TOC and landscape heading tests passed.\n'
+printf 'boostreport TOC and landscape heading tests passed.\n'

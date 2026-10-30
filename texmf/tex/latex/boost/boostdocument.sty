@@ -1,11 +1,11 @@
-%% mcdocument.sty -- LaTeX2e MC common commands and environments
+%% boostdocument.sty -- LaTeX2e Boost common commands and environments
 %
 % Copyright (C) 2008-2026 Fabrice Niessen. All rights reserved.
 
 %* --[ Identification --------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mcdocument}[2026/07/18 v1.3 Mission Critical IT Common]
+\ProvidesPackage{boostdocument}[2026/07/18 v1.3 Pirilampo Common]
 
 %* --[ Imports ---------------------------------------------------------------
 
@@ -14,7 +14,7 @@
 \RequirePackage[printonlyused]{acronym}% (not in medium TeX Live installation)
 \RequirePackage{listings} % must be loaded after `babel'
 
-\RequirePackage{mccommon}
+\RequirePackage{boostcommon}
 
 \RequirePackage{etoolbox} % contains the ifstrempty command
 \RequirePackage{atbegshi} % Added to avoid the "incompatible list can't be
@@ -75,12 +75,12 @@
 %* --[ Commands --------------------------------------------------------------
 
 %\newcommand{\\fancy}{\@ifnextchar*{cmd with star}{cmdwithout star} Other stuff}
-\newcommand*{\mcchapter}[1]{
+\newcommand*{\boostchapter}[1]{
     \chapter*{#1}
     \addcontentsline{toc}{chapter}{#1}
     \markboth{#1}{}
 }
-\newcommand{\mcsection}[1]{
+\newcommand{\boostsection}[1]{
     \section*{#1}
     \addcontentsline{toc}{section}{#1}
     \markboth{#1}{}
@@ -91,7 +91,7 @@
 \renewcommand*{\acffont}[1]{\emph{#1}}
 \renewcommand*{\acfsfont}[1]{\emph{#1}}
 
-\newcommand{\mcacro}{
+\newcommand{\boostacro}{
 \@ifundefined{chapter}{
     \section*{\acronymtitle}
     \addcontentsline{toc}{section}{\acronymtitle}
@@ -101,11 +101,11 @@
 }
     \markboth{\acronymtitle}{}
 
-    \begin{mcnormalspacing}
+    \begin{boostnormalspacing}
         \begin{acronym}[LARGESTACRO]
             \input{acronyms}
         \end{acronym}
-    \end{mcnormalspacing}
+    \end{boostnormalspacing}
 }
 
 % include the URLs of the links as footnotes
@@ -113,32 +113,32 @@
 % http://tex.stackexchange.com/questions/35310/problem-with-use-of-in-custom-href-command
 % for issue with '#' in custom href command
 \let\orig@href=\href
-\renewcommand*{\href}{\begingroup\@makeother\#\mc@href}
-\newcommand*{\mc@href}[2]{%
+\renewcommand*{\href}{\begingroup\@makeother\#\boost@href}
+\newcommand*{\boost@href}[2]{%
   \ifthenelse{\equal{#1}{#2}}
   {\orig@href{#1}{\nolinkurl{#2}}}
   {\orig@href{#1}{\nolinkurl{#2}}\footnote{\url{#1}}}
   \endgroup}
 
-%** This section is inherited from the old mc-macro.sty file
+%** This section is inherited from the old boost-macro.sty file
 % This section needs some cleanup
 
 \newcommand{\tw}[1]{\textbf{\texttt{\color{darkgreen}#1}}}
 \newcommand{\ew}[1]{\textsl{\color{darkblue}#1}}
 
 
-\newcommand*\mcfile{\nolinkurl}
-\newcommand*\mccmd{\texttt}
-\newcommand\mcshowfont[4]{% font parameters
+\newcommand*\boostfile{\nolinkurl}
+\newcommand*\boostcmd{\texttt}
+\newcommand\boostshowfont[4]{% font parameters
 Font #1/#2/#3/#4:
 {\usefont{#1}{#2}{#3}{#4}%
 ABCDEF abcdef 123456 ,;:!}%
 \par}
 
 
-\newcommand\mcext[1]{\texttt{#1}}
-\newcommand\mcpkg[1]{\textsf{#1}}
-\newcommand\mcEXT[3]{\noindent #1\quad\ext{#2}\quad---\quad#3\par}
+\newcommand\boostext[1]{\texttt{#1}}
+\newcommand\boostpkg[1]{\textsf{#1}}
+\newcommand\boostEXT[3]{\noindent #1\quad\ext{#2}\quad---\quad#3\par}
 \def\<#1>{$\langle$\textit{\rmfamily n}$\rangle$}
 
 
@@ -150,68 +150,68 @@ ABCDEF abcdef 123456 ,;:!}%
 \RequirePackage{soul}% (not in medium TeX Live installation)
 
 % hide lines of text
-\DeclareRobustCommand{\mcsecret}{%
+\DeclareRobustCommand{\boostsecret}{%
 \def\SOUL@everytoken{\phantom{\the\SOUL@token}}\SOUL@}
-% % to deactivate `\mcsecret' command:
-% \renewcommand\mcsecret[1]{#1}
+% % to deactivate `\boostsecret' command:
+% \renewcommand\boostsecret[1]{#1}
 
 % see as well the `soulutf8' package (from Heiko Oberdiek) which is an
 % extension of the `soul' package for those who are encoding in UTF-8
 
 
 % how not to have a page break with what is following?
-\def\mckeepwithnextpar{\par\nobreak\@afterheading}
+\def\boostkeepwithnextpar{\par\nobreak\@afterheading}
 % `\nobreak' is `\penalty10000', and `\allowbreak' is `\penalty0'
 
 
-\newenvironment{mcnormalspacing}
+\newenvironment{boostnormalspacing}
 {\par\setstretch{1}}
 {\par}
 
 
 % for better printed documentation of nuweb/noweb chunks of code
-\newenvironment{mcnxweb}
+\newenvironment{boostnxweb}
 {%
 \definecolor{shadecolor}{HTML}{FFFFCC}% light yellow
 \begin{shaded}% for background color
-    \begin{mcnormalspacing}}
+    \begin{boostnormalspacing}}
 {%
-    \end{mcnormalspacing}
+    \end{boostnormalspacing}
 \end{shaded}}
 
-\newcommand\mcemail{\begingroup \urlstyle{tt}\Url}
+\newcommand\boostemail{\begingroup \urlstyle{tt}\Url}
 
 % must be loaded after url and hyperref
 \RequirePackage[colorinlistoftodos]{todonotes}% (not in medium TeX Live installation)
-\definecolor{mc@todobg}{HTML}{F5F5F5} % white smoke
-\definecolor{mc@todoborder}{HTML}{DDDDDD} % ~ gray87
-\renewcommand{\@todonotes@backgroundcolor}{mc@todobg}
-\renewcommand{\@todonotes@bordercolor}{mc@todoborder}
+\definecolor{boost@todobg}{HTML}{F5F5F5} % white smoke
+\definecolor{boost@todoborder}{HTML}{DDDDDD} % ~ gray87
+\renewcommand{\@todonotes@backgroundcolor}{boost@todobg}
+\renewcommand{\@todonotes@bordercolor}{boost@todoborder}
 
-\newcounter{mccomment}
-\newcommand{\mccomment}[2][]{% initials of the author + note in the margin
-\if@mccomment
-    \refstepcounter{mccomment}
+\newcounter{boostcomment}
+\newcommand{\boostcomment}[2][]{% initials of the author + note in the margin
+\if@boostcomment
+    \refstepcounter{boostcomment}
     {\setstretch{0.7}% spacing
     \todo[color={red!100!green!33},size=\small]{%
-    \textbf{Comment [\uppercase{#1}\themccomment]:}~#2}}
+    \textbf{Comment [\uppercase{#1}\theboostcomment]:}~#2}}
 \else
     \relax
 \fi
 }
 
-% This is to be compared with mccomment. Certainly not as good.
+% This is to be compared with boostcomment. Certainly not as good.
 \newcommand{\fixxme}[1]{%%
   \textcolor{red}{FIXXME}\marginpar{\textcolor{red}{#1}}%%
 }
 
-\newcommand{\mctodo}[2][]{% title in bold + note
-\refstepcounter{mccomment}
+\newcommand{\boosttodo}[2][]{% title in bold + note
+\refstepcounter{boostcomment}
 {\todo[inline,color=blue!20]{
 % \ifthenelse{\equal{{#1}}{}}
 % {}%
 % {\textbf{#1}~}%
-\textbf{TODO [\uppercase{#1}\themccomment]:}~#2}}}
+\textbf{TODO [\uppercase{#1}\theboostcomment]:}~#2}}}
 
 % Tired of doing 1\,280\,772\,211? `siunitx' is great for avoiding typesetting
 % numbers and units in full.
@@ -223,22 +223,22 @@ ABCDEF abcdef 123456 ,;:!}%
 
 %* --[ Environments ----------------------------------------------------------
 
-% mcovalbox definition
-\definecolor{mcballblue}{HTML}{009EE0}% blue of MC "it" ball
-\newlength{\mcovalboxwidth}
+% boostovalbox definition
+\definecolor{boostballblue}{HTML}{009EE0}% blue of Boost "it" ball
+\newlength{\boostovalboxwidth}
 
-\newenvironment{mcovalbox}[1][]{
-    \setlength{\mcovalboxwidth}{\linewidth}
+\newenvironment{boostovalbox}[1][]{
+    \setlength{\boostovalboxwidth}{\linewidth}
     % Remove 2x inner sep from the width
-    \addtolength{\mcovalboxwidth}{-10pt}
-\begin{tikzpicture}[mcovalboxstyle/.append style={rectangle,rounded corners=5pt,inner sep=5pt,inner ysep=5pt}]
+    \addtolength{\boostovalboxwidth}{-10pt}
+\begin{tikzpicture}[boostovalboxstyle/.append style={rectangle,rounded corners=5pt,inner sep=5pt,inner ysep=5pt}]
     \if@black
-        \tikzset{mcovalboxstyle/.append style={draw}}
+        \tikzset{boostovalboxstyle/.append style={draw}}
     \else
-        \tikzset{mcovalboxstyle/.append style={fill=mcballblue!30!white}}
+        \tikzset{boostovalboxstyle/.append style={fill=boostballblue!30!white}}
     \fi
-    \node [mcovalboxstyle] (box) \bgroup
-    \begin{minipage}{\mcovalboxwidth}
+    \node [boostovalboxstyle] (box) \bgroup
+    \begin{minipage}{\boostovalboxwidth}
         \ifstrempty{#1}{}{\textbf{#1~--- }}%
         }{
     \end{minipage}
@@ -268,4 +268,4 @@ ABCDEF abcdef 123456 ,;:!}%
 % time-stamp-end: " "
 % End:
 
-%% mcdocument.sty ends here
+%% boostdocument.sty ends here

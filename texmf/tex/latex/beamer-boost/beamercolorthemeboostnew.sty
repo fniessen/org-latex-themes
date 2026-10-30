@@ -1,10 +1,10 @@
-% [[file:beamerthememcnew.org::*Color%20theme][Color\ theme:1]]
+% [[file:beamerthemeboostnew.org::*Color%20theme][Color\ theme:1]]
 % Copyright 2010-2013 by Fabrice Niessen. All rights reserved.
 
 % \ProvidesPackageRCS $Header$
 
 % TODO Test this with different base themes, such as:
-% \usetheme{Goettingen}\useoutertheme{infolines}\usecolortheme{mc}
+% \usetheme{Goettingen}\useoutertheme{infolines}\usecolortheme{boost}
 
 
 % used for normal text
@@ -23,47 +23,47 @@
 
 \mode<presentation>
 
-\definecolor{mc@darkblue}{rgb}{0.13,0.13,0.26}
-\definecolor{mc@lightblue}{rgb}{0.12,0.49,0.80}
-\definecolor{mc@darkred}{rgb}{0.50,0.00,0.00}
-\definecolor{mc@gray}{rgb}{0.26,0.26,0.26}
+\definecolor{boost@darkblue}{rgb}{0.13,0.13,0.26}
+\definecolor{boost@lightblue}{rgb}{0.12,0.49,0.80}
+\definecolor{boost@darkred}{rgb}{0.50,0.00,0.00}
+\definecolor{boost@gray}{rgb}{0.26,0.26,0.26}
 
-\definecolor{mc@infolines-fg}{named}{white}
-\definecolor{mc@infolines-bg}{named}{mc@lightblue}
-\definecolor{mc@navsymbols}{named}{mc@lightblue}
-\definecolor{mc@itemi}{named}{mc@lightblue}
+\definecolor{boost@infolines-fg}{named}{white}
+\definecolor{boost@infolines-bg}{named}{boost@lightblue}
+\definecolor{boost@navsymbols}{named}{boost@lightblue}
+\definecolor{boost@itemi}{named}{boost@lightblue}
 
-\setbeamercolor*{alerted text}{fg=mc@lightblue}
+\setbeamercolor*{alerted text}{fg=boost@lightblue}
 
 \setbeamercolor*{example text}{fg=green!65!black}
 
 % used for structured text, and as a base for headings of blocks, item buttons, and titles
-\setbeamercolor*{structure}{fg=mc@darkblue}% XXX XXX XXX change it to see where it is used
+\setbeamercolor*{structure}{fg=boost@darkblue}% XXX XXX XXX change it to see where it is used
 
 % used in the headline and footline (right part: current date, and frame count)
-\setbeamercolor{palette primary}{use={structure,normal text},fg=mc@infolines-fg,bg=mc@infolines-bg!75!black}
+\setbeamercolor{palette primary}{use={structure,normal text},fg=boost@infolines-fg,bg=boost@infolines-bg!75!black}
 
 % used in the footline (center part: presentation's title)
-\setbeamercolor{palette secondary}{use={structure,normal text},fg=mc@infolines-fg,bg=mc@infolines-bg!60!black}
+\setbeamercolor{palette secondary}{use={structure,normal text},fg=boost@infolines-fg,bg=boost@infolines-bg!60!black}
 
 % used in the headline and footline (left part: author's name, and institution)
-\setbeamercolor{palette tertiary}{use={structure,normal text},fg=mc@infolines-fg,bg=mc@infolines-bg!45!black}
+\setbeamercolor{palette tertiary}{use={structure,normal text},fg=boost@infolines-fg,bg=boost@infolines-bg!45!black}
 
 \setbeamercolor{palette quaternary}{use={structure,normal text},fg=structure.fg,bg=normal text.bg!30!black}
 % Color\ theme:1 ends here
 
-% [[file:beamerthememcnew.org::*Color%20theme][Color\ theme:2]]
+% [[file:beamerthemeboostnew.org::*Color%20theme][Color\ theme:2]]
 \setbeamercolor{section in sidebar}{bg=white}% with or without *?
 
 % XXX Remove hardcoded colors from here
-\setbeamercolor{subsection in sidebar}{fg=white,bg=mc@lightblue!75!black}% with or without *?
+\setbeamercolor{subsection in sidebar}{fg=white,bg=boost@lightblue!75!black}% with or without *?
 \setbeamercolor{subsection in sidebar shaded}{use=subsection in sidebar,fg=subsection in sidebar.fg!40!bg}% with or without *?
 % Color\ theme:2 ends here
 
-% [[file:beamerthememcnew.org::*Color%20theme][Color\ theme:3]]
+% [[file:beamerthemeboostnew.org::*Color%20theme][Color\ theme:3]]
 % used for the navigation symbols
-\setbeamercolor{navigation symbols}{use=structure,fg=mc@navsymbols}% with or without *?
-\setbeamercolor{navigation symbols dimmed}{use=structure,fg=mc@navsymbols!50!bg}% with or without *?
+\setbeamercolor{navigation symbols}{use=structure,fg=boost@navsymbols}% with or without *?
+\setbeamercolor{navigation symbols dimmed}{use=structure,fg=boost@navsymbols!50!bg}% with or without *?
 
 \setbeamercolor*{block body}{bg=normal text.bg!90!black}
 \setbeamercolor*{block body alerted}{bg=normal text.bg!90!black}
@@ -72,7 +72,7 @@
 \setbeamercolor*{block title alerted}{use={normal text,alerted text},fg=alerted text.fg!75!normal text.fg,bg=normal text.bg!75!black}
 \setbeamercolor*{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
 
-\setbeamercolor{item}{fg=mc@itemi}% with or without *?
+\setbeamercolor{item}{fg=boost@itemi}% with or without *?
 \setbeamercolor{subitem}{parent=item}% with or without *?
 \setbeamercolor{subsubitem}{parent=subitem}% with or without *?
 
@@ -87,7 +87,7 @@
 \setbeamercolor{itemize subsubitem}{parent=subsubitem}% with or without *?
 % Color\ theme:3 ends here
 
-% [[file:beamerthememcnew.org::*Color%20theme][Color\ theme:4]]
+% [[file:beamerthemeboostnew.org::*Color%20theme][Color\ theme:4]]
 \setbeamercolor*{sidebar}{parent=palette primary}
 
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
@@ -96,7 +96,7 @@
 \setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
 % Color\ theme:4 ends here
 
-% [[file:beamerthememcnew.org::*Color%20theme][Color\ theme:5]]
+% [[file:beamerthemeboostnew.org::*Color%20theme][Color\ theme:5]]
 \setbeamercolor*{separation line}{}
 \setbeamercolor*{fine separation line}{}
 
@@ -111,5 +111,5 @@
 % time-stamp-end: " "
 % End:
 
-%% beamercolorthememcnew.sty ends here
+%% beamercolorthemeboostnew.sty ends here
 % Color\ theme:5 ends here

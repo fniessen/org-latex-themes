@@ -5,8 +5,9 @@
 Org-to-LaTeX export toolkit with document classes, Beamer themes, and Emacs
 integration.
 
-Keep `lisp/org-mc-latex-classes.el`, reusable settings in `org/setup/`, and
-classes/themes under `texmf/` consistent. Preserve public class and theme names.
+Keep `lisp/org-boost-latex-classes.el`, reusable settings in `org/setup/`, and
+classes/themes under `texmf/` consistent. Use =boost= names for the public LaTeX
+API and Pirilampo for the brand; do not reintroduce legacy =mc= names or aliases.
 
 ## Changes and precautions
 

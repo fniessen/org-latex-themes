@@ -1,26 +1,26 @@
-%% mcbook.cls -- LaTeX2e MC book class
+%% boostarticle.cls -- LaTeX2e Boost article class
 %
 % Copyright (C) 2008-2009 Francesco Pizzolante
 
 %* --[ Identification
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mcbook}[2009/12/08 v1.0 Mission Critical IT book class]
+\ProvidesClass{boostarticle}[2009/12/08 v1.0 Pirilampo article class]
 
 %* --[ Requires
-%   - mcreport
+%   - boostreport
 
 %* --[ Options
-%   - see the mcreport class for the complete list of options.
+%   - see the boostreport class for the complete list of options.
 
 \DeclareOption*{
-    \PassOptionsToClass{\CurrentOption}{mcreport}}
+    \PassOptionsToClass{\CurrentOption}{boostreport}}
 \ProcessOptions
 
 
 %* --[ Document Classes (some of the various classes available)
 
-\LoadClass[book]{mcreport}
+\LoadClass[article]{boostreport}
 
 %% End of package
 \endinput % very last line
@@ -34,4 +34,4 @@
 % time-stamp-end: " "
 % End:
 
-%% mcbook.cls ends here
+%% boostarticle.cls ends here

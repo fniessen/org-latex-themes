@@ -1,25 +1,49 @@
-% Copyright (C) 2010-2015 Fabrice Niessen. All rights reserved.
+#+TITLE:     Beamer Theme Boost
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     fni@pirilampo.org
+#+Time-stamp: <2013-12-19 Thu 12:23>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
 
-\ProvidesPackage{beamerthememc}[2025/01/05 v1.0 beamer MC theme]
+#+PROPERTY:  eval never
+#+PROPERTY:  comments no
+#+PROPERTY:  tangle beamerthemeboost.sty
+#+SETUPFILE: ~/org/setup/html-theme-bigblow.setup
+
+* Tasks
+
+** TODO Fix the title page
+
+See http://www.math.umbc.edu/~rouben/beamer/quickstart-Z-H-12.html#node_sec_12
+
+** TODO Fix environments such as quote, verse
+
+** TODO Continue to empty beamerthemeboost.sty
+
+#+begin_src latex
+% Copyright 2010-2015 by Fabrice Niessen. All rights reserved.
+
+\ProvidesPackage{beamerthemeboost}[2015/01/07 v1.0 beamer Boost theme]
 
 
 \DeclareOptionBeamer{width}
-{\PassOptionsToPackage{width=#1}{beamerouterthememc}}
+{\PassOptionsToPackage{width=#1}{beamerouterthemeboostnew}}
 
 \DeclareOptionBeamer{hideothersubsections}
-{\PassOptionsToPackage{hideothersubsections=#1}{beamerouterthememc}}
+{\PassOptionsToPackage{hideothersubsections=#1}{beamerouterthemeboostnew}}
 
 \DeclareOptionBeamer{hideallsubsections}
-{\PassOptionsToPackage{hideallsubsections=#1}{beamerouterthememc}}
+{\PassOptionsToPackage{hideallsubsections=#1}{beamerouterthemeboostnew}}
 
 %\ExecuteOptionsBeamer{hideothersubsections}% default value
 \ProcessOptionsBeamer
 
 \mode<presentation>
 
-\useoutertheme[height=0pt,left]{mcnew}
+\useoutertheme[height=0pt,left]{boostnew}
 
-\usecolortheme{mcnew}
+\usecolortheme{boostnew}
 \setbeamercolor*{titlelike}{parent=structure}
 
 
@@ -30,15 +54,15 @@
 \setbeamercolor{section number projected}{fg=white}
 \setbeamerfont{subsection in toc}{size=\footnotesize}
 
-\useinnertheme{mcnew}
+\useinnertheme{boostnew}
 
-% Color hyperref links and urls (from mcreport.cls)
-\definecolor{mc-color-link}{HTML}{1968BA} % blue (TOC and intern links) (XXX)
-\definecolor{mc-color-url}{HTML}{003399} % darker blue
+% Color hyperref links and urls (from boostreport.cls)
+\definecolor{boost-color-link}{HTML}{1968BA} % blue (TOC and intern links) (XXX)
+\definecolor{boost-color-url}{HTML}{003399} % darker blue
 \hypersetup{%
 colorlinks=true,% avoid the red boxed around cross-references
-linkcolor=mc-color-link,% color of internal links
-urlcolor=mc-color-url, % color of external links
+linkcolor=boost-color-link,% color of internal links
+urlcolor=boost-color-url, % color of external links
 }%
 
 \mode
@@ -68,10 +92,22 @@ urlcolor=mc-color-url, % color of external links
 % 2011-05-26-FPZ: instead of the setspace package (which makes foonotes
 % disappear), use the following command:
 \linespread{1.2}
+#+end_src
 
+*** Listings
+
+- http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/listings/listings.pdf
+- http://stackoverflow.com/questions/741985/latex-source-code-listing-like-in-professional-books
+- http://efreedom.com/Question/1-2965848/LaTeX-Two-Columns-Listings-Numbers
+
+#+begin_src latex
 \usepackage{booktabs} % publishing quality tables
 \usepackage{colortbl}
+#+end_src
 
+See http://en.wikibooks.org/wiki/LaTeX/Tables
+
+#+begin_src latex
 \usepackage[printonlyused]{acronym}
 \usepackage{tikz}
 % \usepackage{pgfplots}% (not in medium TeX Live installation)
@@ -81,7 +117,9 @@ urlcolor=mc-color-url, % color of external links
 % \usepackage{beamerthemesplit}
 % \usepackage{beamerthemeshadow}
 % \setbeamertemplate{items}[circle]
+#+end_src
 
+#+begin_src latex
 %* 15 Presentation Themes
 
 % A presentation theme dictates for every single detail of a presentation
@@ -98,7 +136,9 @@ urlcolor=mc-color-url, % color of external links
 % \usetheme{umbc3}
 % \usetheme{progressbar}
 % \useoutertheme{split}
+#+end_src
 
+#+begin_src latex
 %* 17 Color Themes
 
 % Color logic:
@@ -107,16 +147,16 @@ urlcolor=mc-color-url, % color of external links
 % - green = example
 % - blue = structure
 
-% \usecolortheme[named=mc-red]{structure}
+% \usecolortheme[named=boost-red]{structure}
 
 % FIXME One should use {parent=palette tertiary} instead of hardcoded colors
-\definecolor{mc-gray}{HTML}{E5E5E5}
-\definecolor{mc-lightgray}{HTML}{EEEEEE}
-\definecolor{mc-red}{HTML}{FF5D99}
+\definecolor{boost-gray}{HTML}{E5E5E5}
+\definecolor{boost-lightgray}{HTML}{EEEEEE}
+\definecolor{boost-red}{HTML}{FF5D99}
 
-\definecolor{mc-blue}{HTML}{333366}
-\definecolor{mc-black}{HTML}{000000}
-\definecolor{mc-dark-gray}{HTML}{595959}
+\definecolor{boost-blue}{HTML}{333366}
+\definecolor{boost-black}{HTML}{000000}
+\definecolor{boost-dark-gray}{HTML}{595959}
 
 \definecolor{linkcolor}{HTML}{183573} % used at TOC
 \definecolor{structure}{HTML}{183573}
@@ -135,14 +175,18 @@ urlcolor=mc-color-url, % color of external links
 % You could always add
 % \beamerdefaultoverlayspecification{<+->}
 % to the preamble
+#+end_src
 
+#+begin_src latex
 %* 18 Font Themes
 
 \usepackage{helvet}
 % \usepackage{lxfonts}
 
 \usefonttheme{default}
+#+end_src
 
+#+begin_src latex
 %* 8 Creating Frames
 
 %** 8.2 Components of a Frame
@@ -195,14 +239,14 @@ urlcolor=mc-color-url, % color of external links
 
 % \useoutertheme{infolines}
 
-\definecolor{mc-color-brand}{HTML}{1968BA} % blue
+\definecolor{boost-color-brand}{HTML}{1968BA} % blue
 
-\newcommand*{\mc}{%
+\newcommand*{\boost}{%
     \textsf{%
-        \color{mc-color-brand}{\bfseries{}M~I~S~S~I~O~N~}%
+        \color{boost-color-brand}{\bfseries{}M~I~S~S~I~O~N~}%
         \color{black}C~R~I~T~I~C~A~L~%
-        \color{mc-color-brand}{\bfseries{}I~T}}}
-\setbeamercolor{footline}{fg=mc-gray}
+        \color{boost-color-brand}{\bfseries{}I~T}}}
+\setbeamercolor{footline}{fg=boost-gray}
 \setbeamerfont{footline}{size*={4}{4}}
 
 \setbeamercolor*{section in head/foot}{fg=black}
@@ -211,33 +255,33 @@ urlcolor=mc-color-url, % color of external links
 \setbeamercolor*{title in head/foot}{fg=black}
 \setbeamercolor*{date in head/foot}{fg=black}
 \setbeamercolor{fpz}{bg=red}
-\newlength{\mcframewidth}
-\newlength{\mcfootheight}
+\newlength{\boostframewidth}
+\newlength{\boostfootheight}
 
 \setbeamertemplate{footline}
 {%
-    \setlength{\mcframewidth}{\paperwidth}%
-    \addtolength{\mcframewidth}{-\beamer@leftsidebar}%
-    \setlength{\mcfootheight}{2.25ex}%
+    \setlength{\boostframewidth}{\paperwidth}%
+    \addtolength{\boostframewidth}{-\beamer@leftsidebar}%
+    \setlength{\boostfootheight}{2.25ex}%
     \leavevmode%
     \hbox{%
-    \begin{beamercolorbox}[wd=\beamer@leftsidebar,ht=\mcfootheight,dp=8pt,left]{sidebar}
+    \begin{beamercolorbox}[wd=\beamer@leftsidebar,ht=\boostfootheight,dp=8pt,left]{sidebar}
     \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=.33\mcframewidth,ht=\mcfootheight,dp=8pt,left]
+    \begin{beamercolorbox}[wd=.33\boostframewidth,ht=\boostfootheight,dp=8pt,left]
         % wd = width
         % ht = height
         % dp = depth (relates to display order)
         {author in head/foot}%
         \hskip\beamer@leftmargin%
         \usebeamerfont{author in head/foot}% FIXME Duplicate of 2 lines above?
-        \raisebox{0.05em}[0mm][-0.05em]{\copyright}~\mc
+        \raisebox{0.05em}[0mm][-0.05em]{\copyright}~\boost
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.34\mcframewidth,ht=\mcfootheight,dp=8pt,center]
+    \begin{beamercolorbox}[wd=.34\boostframewidth,ht=\boostfootheight,dp=8pt,center]
         {title in head/foot}%
         \usebeamerfont{date in head/foot}
         \insertdate
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.33\mcframewidth,ht=\mcfootheight,dp=8pt,right]
+    \begin{beamercolorbox}[wd=.33\boostframewidth,ht=\boostfootheight,dp=8pt,right]
         {date in head/foot}%
         \insertframenumber{}% /\inserttotalframenumber to create a "k/n" counter
         % un frame est constitué de plusieurs slide superposés comme des calques
@@ -253,14 +297,14 @@ urlcolor=mc-color-url, % color of external links
 % navigation symbols
 \newif\if@navsymbols
 \@navsymbolsfalse
-% \define@key{mc}{@navsymbols}[false]{%
-%     \mc@boolkey{@navsymbols}{#1}}
+% \define@key{boost}{@navsymbols}[false]{%
+%     \boost@boolkey{@navsymbols}{#1}}
 
 % Use \beamertemplatenavigationsymbolsempty to remove the navigation symbols
 
 % remove the logo from the right sidebar (navigation symbols only) so that we
 % can place it less obtrusively
-\defbeamertemplate*{sidebar right}{mc theme} % XXX default? code under test
+\defbeamertemplate*{sidebar right}{boost theme} % XXX default? code under test
 {
     \vfill%
     \if@navsymbols%
@@ -282,15 +326,30 @@ urlcolor=mc-color-url, % color of external links
 % % comment out line below to see navigation symbols
 % \setbeamertemplate{navigation symbols}{}
 
-\setbeamercolor*{navigation symbols}{fg=mc-color-brand}
+\setbeamercolor*{navigation symbols}{fg=boost-color-brand}
+#+end_src
 
+*** Logo
+
+Some beamer styles display logos and some do not. IIRC it has to do with the
+"outer theme" used by the style.
+
+If you have a favorite theme that does not include logos, you might be able to
+hack it to do so. I customized a few of the included themes to display logos
+for my college (and also use our color scheme).
+
+#+begin_src latex
 \newlength{\logoheight}\setlength{\logoheight}{22pt}
 
-% mclogo contains the MC logo
-\newcommand{\mclogo}[1]{\def\insertmclogo{#1}}
-\mclogo{\includegraphics[height=\logoheight]{MC}}
+% boostlogo contains the Pirilampo logo
+\newcommand{\boostlogo}[1]{\def\insertboostlogo{#1}}
+\boostlogo{\textsf{\bfseries\color{boost-color-brand}Pirilampo}}
+#+end_src
 
-\setbeamercolor*{frametitle}{fg=mc-color-brand}
+*** Frame title
+
+#+begin_src latex
+\setbeamercolor*{frametitle}{fg=boost-color-brand}
 \setbeamerfont{frametitle}{series=\bfseries,family=\sffamily,shape=\upshape,size=\Large}
 \setbeamertemplate{frametitle}[default][center]
 
@@ -301,7 +360,6 @@ urlcolor=mc-color-url, % color of external links
 %         \hfill{}
 %         {#1}%
 %         \hfill{}
-%         % \includegraphics[height=24pt]{MissionCriticalIT}%
 %         \rlap{\insertlogo}
 %     }% orig@frametitle
 % }% frametitle
@@ -324,15 +382,15 @@ urlcolor=mc-color-url, % color of external links
 
 \setbeamerfont{subtitle}{size=\Large,series=\mdseries,family=\sffamily,shape=\upshape}
 
-% We redefine the frametitle to include the MC logo and the other logo
+% We redefine the frametitle to include the Pirilampo logo and the other logo
 % (if desired)
-\definecolor{mc@sepline}{rgb}{0.26,0.26,0.26}
+\definecolor{boost@sepline}{rgb}{0.26,0.26,0.26}
 \setbeamertemplate{frametitle}
 {%
      \leavevmode%
      \vskip -40pt
      \hbox{%
-%     % \begin{beamercolorbox}[wd=.03\mcframewidth,ht=2.25ex,dp=8pt,left]{part1}%
+%     % \begin{beamercolorbox}[wd=.03\boostframewidth,ht=2.25ex,dp=8pt,left]{part1}%
 %     %     % \hspace{-0.5cm}
 %     %     % \raisebox{-0.3ex}[0pt]{\insertlogo}%
 %     % \end{beamercolorbox}%
@@ -340,13 +398,13 @@ urlcolor=mc-color-url, % color of external links
          \insertframetitle
        \end{beamercolorbox}%
        \begin{beamercolorbox}[wd=.08\textwidth,right]{part3}%
-         \raisebox{-.8ex}[0pt][.8ex]{\insertmclogo}
+         \raisebox{-.8ex}[0pt][.8ex]{\insertboostlogo}
        \end{beamercolorbox}%
      }
      {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
      \vskip -2.25ex
      \begin{beamercolorbox}[wd=\textwidth]{rule}%
-         {\color{mc-color-brand}\rule{\textwidth}{0.4pt}}% FIXME color should be mc@sepline
+         {\color{boost-color-brand}\rule{\textwidth}{0.4pt}}% FIXME color should be boost@sepline
      \end{beamercolorbox}%
 }
 
@@ -359,27 +417,33 @@ urlcolor=mc-color-url, % color of external links
 \setbeamercolor*{normal text}{fg=black,bg=white}
 %! the background of this color is used for the background of the presentation
 
-% \definecolor{bottomcolour}{HTML}{ED9900}
+% \definecolor{bottoboostolour}{HTML}{ED9900}
 % \definecolor{middlecolour}{HTML}{F5CC00}
-% \setbeamertemplate{background canvas}[vertical shading][bottom=white, middle=middlecolour, top=bottomcolour]
+% \setbeamertemplate{background canvas}[vertical shading][bottom=white, middle=middlecolour, top=bottoboostolour]
 
 %% It is possible to use a different background template, e.g. an empty
 %% Powerpoint file that is converted to PNG, JPG, EPS or PDF:
 % \usebackgroundtemplate{
 %     \includegraphics[width=\paperwidth, height=\paperheight]{img}
 % }
+#+end_src
 
+*** Title page
+
+#+begin_src latex
 % When setting the logo also set the titlegraphic
 \let\orig@logo=\logo
 \renewcommand{\logo}[1]{\orig@logo{#1}\titlegraphic{#1}}
 
-% mctitlegraphic contains the MC logo which goes on the title page
-\newcommand{\mctitlegraphic}[1]{\def\insertmctitlegraphic{#1}}
-\mctitlegraphic{\includegraphics[height=22pt]{MissionCriticalIT}}
+% boosttitlegraphic contains the Pirilampo logo which goes on the title page
+\newcommand{\boosttitlegraphic}[1]{\def\insertboosttitlegraphic{#1}}
+\boosttitlegraphic{\textsf{\Large\bfseries\color{boost-color-brand}Pirilampo}}
+#+end_src
 
+#+begin_src latex
 \setbeamercolor*{title page}{fg=black}
 \setbeamerfont{title page}{size=\Large,series=\bfseries}
-\defbeamertemplate*{title page}{mc}[1][]
+\defbeamertemplate*{title page}{boost}[1][]
 {
 %\vbox{}
 \vfill
@@ -407,7 +471,7 @@ urlcolor=mc-color-url, % color of external links
         \usebeamerfont{date}\insertdate
     \end{beamercolorbox}\vskip0.5em
     \vfill
-    {\insertmctitlegraphic\par}
+    {\insertboosttitlegraphic\par}
     \vfill
 \end{centering}
 \vfill
@@ -438,15 +502,17 @@ urlcolor=mc-color-url, % color of external links
 \setbeamerfont{author}{size=\scriptsize,series=\mdseries}
 \setbeamerfont{institute}{size=\normalsize,series=\mdseries}
 \setbeamerfont{date}{size=\scriptsize,series=\mdseries}
+#+end_src
 
+#+begin_src latex
 %* 12 Structuring a Presentation: The Local Structure
 
 %** 12.1 Itemizations, Enumerations, and Descriptions
 
-%\setbeamercolor*{itemize item}{fg=mc-red}
+%\setbeamercolor*{itemize item}{fg=boost-red}
 \setbeamertemplate{itemize item}[triangle]
 
-%\setbeamercolor*{itemize subitem}{fg=mc-red}
+%\setbeamercolor*{itemize subitem}{fg=boost-red}
 \setbeamertemplate{itemize subitem}{\raisebox{.15em}[0pt]{\LARGE $\centerdot$}}
 % 2010-06-14 [FPZ]: added the [0pt] depth parameter in order to avoid
 % different spaces between items if p-g-q letters are present in previous item.
@@ -454,40 +520,42 @@ urlcolor=mc-color-url, % color of external links
 \setbeamerfont{itemize/enumerate body}{}% series=\bfseries
 \setbeamerfont{itemize/enumerate subbody}{series=\mdseries,size=\footnotesize}
 
-%\setbeamercolor*{itemize subsubitem}{fg=mc-red}
+%\setbeamercolor*{itemize subsubitem}{fg=boost-red}
 \setbeamertemplate{itemize subsubitem}{\textendash}
 
-%\setbeamercolor*{enumerate item}{fg=mc-red}
+%\setbeamercolor*{enumerate item}{fg=boost-red}
 \setbeamertemplate{enumerate item}[default] % FIXME Numbered text in TOC
 \setbeamerfont{enumerate item}{size=\normalsize}% series=\bfseries
 
 
 %** 12.2 Highlighting
 
-\setbeamercolor*{alerted text}{fg=mc-color-brand}
+\setbeamercolor*{alerted text}{fg=boost-color-brand}
 \setbeamerfont{alerted text}{series=\bfseries}
 \setbeamerfont{structure}{family=\sffamily} % toc
 
 
-\setbeamercolor*{section in sidebar shaded}{parent=palette sidebar secondary,fg=mc-gray}
-\setbeamercolor*{section in sidebar}{parent=section in sidebar shaded,bg=white,fg=mc-color-brand}
+\setbeamercolor*{section in sidebar shaded}{parent=palette sidebar secondary,fg=boost-gray}
+\setbeamercolor*{section in sidebar}{parent=section in sidebar shaded,bg=white,fg=boost-color-brand}
 \setbeamerfont{section in sidebar}{size*={5}{5}}
 
-\setbeamercolor*{subsection in sidebar shaded}{parent=palette sidebar primary,fg=mc-gray}
+\setbeamercolor*{subsection in sidebar shaded}{parent=palette sidebar primary,fg=boost-gray}
 \setbeamercolor*{subsection in sidebar}{parent=subsection in sidebar shaded,bg=section in sidebar.bg,fg=section in sidebar.fg}
 
 %** 12.3 Block Environments
 
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
-\setbeamercolor*{block title}{bg=mc-black,fg=white}
-\setbeamercolor*{block body}{bg=mc-lightgray,fg=mc-dark-gray}
+\setbeamercolor*{block title}{bg=boost-black,fg=white}
+\setbeamercolor*{block body}{bg=boost-lightgray,fg=boost-dark-gray}
 \setbeamercolor*{block body alerted}{bg=white}
 \setbeamercolor*{block body example}{bg=white}
+#+end_src
 
+#+begin_src latex
 %* Other packages
 
-\RequirePackage{mccommon}
+\RequirePackage{boostcommon}
 
 
 % This is for the sake of Emacs.
@@ -498,7 +566,27 @@ urlcolor=mc-color-url, % color of external links
 % time-stamp-end: " "
 % End:
 
-%% beamerthememc.sty ends here
+%% beamerthemeboost.sty ends here
+#+end_src
 
+And place the code in the right place in this file (with tangling support).
+
+*** Customize figures caption
+
+#+begin_src latex
 \usepackage{caption}
 \captionsetup{font={scriptsize,it},labelfont=scriptsize,labelformat=empty}
+#+end_src
+
+** TODO Understand the diff between `\DeclareOptionBeamer' and `\DeclareOption'
+
+Same with `\ProcessOptions'.
+
+** TODO See how other themes are built, and which options are passed, to understand the basic options
+
+** TODO Add options to have infolines and/or sidebar settings
+
+** TODO Fix the Pirilampo logo problem
+
+Cut blank margins, try to position it either absolutely, either depending on
+inner space of the frame

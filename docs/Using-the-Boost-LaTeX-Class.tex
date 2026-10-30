@@ -1,10 +1,10 @@
-%% Using-the-MC-LaTeX-Class.tex
+%% Using-the-Boost-LaTeX-Class.tex
 %
 % Copyright (C) 2008-2010 Fabrice Niessen. All rights reserved.
 % Time-stamp: <2025-01-05 Sun 12:10>
 %
 \listfiles
-\documentclass{mcreport}
+\documentclass{boostreport}
 \usepackage[utf8]{inputenc}
 % \DeclareUnicodeCharater{00A0}{ } % pdftex en utf8
 \usepackage{tikz}
@@ -16,11 +16,11 @@
 \usepackage{datatool}
 \DTLloaddb{nmap-audit}{csv-report.csv}
 
-\title{Using the MC \LaTeX{} Class}
+\title{Using the Boost \LaTeX{} Class}
 \hypersetup{
     pdfsubject={LaTeX class},
-    pdfkeywords={mc reports latex class}}
-\author{Fabrice Niessen \\ \href{mailto:fni@missioncriticalit.com}{fni@missioncriticalit.com}}
+    pdfkeywords={boost reports latex class}}
+\author{Fabrice Niessen \\ \href{mailto:fni@pirilampo.org}{fni@pirilampo.org}}
 \date{\today}
 
 \hfuzz=10000pt % dans l'exemple, je ne veux pas de message sur les
@@ -45,9 +45,9 @@
 
 \tableofcontents
 
-\mccomment[fni]{The section headings are linkable.}
+\boostcomment[fni]{The section headings are linkable.}
 
-\mccomment[fni]{BTW, this is a comment provided by the `mcreport' class.}
+\boostcomment[fni]{BTW, this is a comment provided by the `boostreport' class.}
 
 \newpage
 
@@ -55,8 +55,7 @@
 \section{Context}
 \label{sec:context}
 
-In this document, I will describe how to use the \acs{MC} class,
-\mccomment[fni]{The acronym is an hyperlink as well.} and I will show
+In this document, I will describe how to use the Boost class and show
 different features you can use within \LaTeX{}. This way, you can easily
 figure out how to do things you see implemented here --- a sort of huge
 reference card...
@@ -87,13 +86,13 @@ But, first, some other topics.
     \item There are tons of packages (more than 2,687) to allow you to do
     whatever you've ever dreamed of. Have a look at \acs{CTAN}
     (\url{http://www.ctan.org/search.html}).
-    \mccomment[fni]{Link is broken on 2 lines, but still clickable.}
+    \boostcomment[fni]{Link is broken on 2 lines, but still clickable.}
 
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=11cm]{images/MS-Word-competition}
         \caption{Microsoft Word as competition for LaTeX}
-        \label{fig:logo-mc}
+        \label{fig:logo-boost}
     \end{figure}
 
     \item It is \acs{WYSIWYM}.
@@ -103,10 +102,10 @@ But, first, some other topics.
 \end{itemize}
 
 
-\section{The MC Class}
-\label{sec:mc-class}
+\section{The Boost Class}
+\label{sec:boost-class}
 
-How to use the MC class?  Easy... Just replace:
+How to use the Boost class?  Easy... Just replace:
 
 \begin{verbatim}
 \documentclass{article}
@@ -115,10 +114,10 @@ How to use the MC class?  Easy... Just replace:
 by:
 
 \begin{verbatim}
-\documentclass{mcreport}
+\documentclass{boostreport}
 \end{verbatim}
 
-That should do the trick, if \url{mcreport.cls} is in your \acs{TDS} (\TeX{}
+That should do the trick, if \url{boostreport.cls} is in your \acs{TDS} (\TeX{}
 Directory Structure --- where all the other packages are located), probably
 to be found at \url{~/texmf/tex/latex/}.
 
@@ -130,8 +129,8 @@ update its directory structure for references, and you'll be good to go.
 
 Options are basically order-independent.
 
-The \texttt{mcreport} class currently accepts three mutually exclusive
-\mcobj{options}:
+The \texttt{boostreport} class currently accepts three mutually exclusive
+\texttt{options}:
 
 \begin{itemize}
     \item \textbf{article} --- used to indicate short documents based on the
@@ -165,19 +164,19 @@ As well, it accepts the options:
 \label{sec:macros}
 
 \begin{itemize}
-    \item mccomment --- note in the left margin (``à la Microsoft''
+    \item boostcomment --- note in the left margin (``à la Microsoft''
     reviewing comments). It takes 2 arguments: (optionally) the initials of
     the author, and (mandatory) the note
     itself. \\
-    \verb|\mccomment[fni]{This is a comment.}|
+    \verb|\boostcomment[fni]{This is a comment.}|
 \end{itemize}
 
 \subsection{New Environments}
 \label{sec:environments}
 
 \begin{itemize}
-    \item mcnote --- sort of intermezzo. \\
-    \verb|\begin{mcnote} This is a note. \end{mcnote}|
+    \item boostnote --- sort of intermezzo. \\
+    \verb|\begin{boostnote} This is a note. \end{boostnote}|
 \end{itemize}
 
 % \subsection{Code of the Class}
@@ -185,9 +184,9 @@ As well, it accepts the options:
 % 
 % \lstinputlisting
 % [language=TeX,%
-% caption=Code of the MC class,%
+% caption=Code of the Boost class,%
 % label=lst:this-doc]
-% {mcreport.cls}
+% {boostreport.cls}
 
 
 \section{Tools}
@@ -347,23 +346,23 @@ possible to use \verb|\ref| inside \verb|\ul|:
 \subsubsection{graphics Package}
 
 When inserting graphics, don't put an extension to the filename... See the
-example of \autoref{fig:logo-mc}.
+example of \autoref{fig:logo-pirilampo}.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=2cm]{images/MissionCriticalIT}
-    \caption{Include PNG graphic}
-    \label{fig:logo-mc}
+    {\sffamily\bfseries Pirilampo}
+    \caption{Pirilampo wordmark}
+    \label{fig:logo-pirilampo}
 \end{figure}
 
 If you're using what's know as "pdfLaTeX", know it only accepts graphics in
 (bitmap) PNG, JPG, or (scalable) PDF form.
 
-\begin{mcnote}
+\begin{boostnote}
     For including vector drawings, it's better to furnish them directly in
     the PDF format.
     Though, EPS should be usable with the package purifyeps (not tested).
-\end{mcnote}
+\end{boostnote}
 
 \subsubsection{TikZ/PGF Package}
 
@@ -519,19 +518,19 @@ According to the (first) official rules, the euro symbol has always to
 remain ``sans serif'':
 
 \begin{itemize}
-    \item this costs 10 \euro;
-    \item \textsf{this costs 10 \euro;}
-    \item \texttt{this costs 10 \euro;}
+    \item this costs 10 \texteuro;
+    \item \textsf{this costs 10 \texteuro;}
+    \item \texttt{this costs 10 \texteuro;}
 \end{itemize}
 
-\mccomment[FNI]{Check that the symbol is displayed in your font.}
+\boostcomment[FNI]{Check that the symbol is displayed in your font.}
 but changes to bold and/or italic as needed:
 
 \begin{itemize}
-    \item this costs 10 \euro;
-    \item \textbf{this costs 10 \euro;}
-    \item \textit{this costs 10 \euro;}
-    \item \textit{\textbf{this costs 10 \euro;}}
+    \item this costs 10 \texteuro;
+    \item \textbf{this costs 10 \texteuro;}
+    \item \textit{this costs 10 \texteuro;}
+    \item \textit{\textbf{this costs 10 \texteuro;}}
 \end{itemize}
 
 \subsubsection{latexsym}
@@ -594,13 +593,13 @@ But, even if we don't need specific functionality, it is useful to declare
 the \texttt{array} package, which fixes a certain number of defaults, and
 brings some fantasy with the tables.
 
-\begin{mcnote}
+\begin{boostnote}
     Attention: the \texttt{array} \emph{environment} is for mathematical
     tables. Do not confuse...
 
     En fait, il y a peu de cas où on a vraiment besoin de array de nos jours
     (voir aligned, cases, matrix, pmatrix, etc d'amsmath).
-\end{mcnote}
+\end{boostnote}
 
 \subsubsection{booktabs Package}
 \label{sec:booktabs-package}
@@ -704,10 +703,10 @@ We can use fonts in whichever size, as shown here (from 1 pt to 32 pt):
 \multido{\i=1+1}{32}{\fontsize{\i}{\i}\selectfont A}
 
 % you can change the values to see other fonts
-\mcshowfont{T1}{cmr}{m}{n}
-\mcshowfont{T1}{phv}{m}{sc}
-\mcshowfont{T1}{ptm}{b}{it}
-\mcshowfont{U}{pzd}{m}{n}
+\boostshowfont{T1}{cmr}{m}{n}
+\boostshowfont{T1}{phv}{m}{sc}
+\boostshowfont{T1}{ptm}{b}{it}
+\boostshowfont{U}{pzd}{m}{n}
 
 Si tu veux utiliser une fonte de façon ponctuelle, tu peux utiliser
 
@@ -819,9 +818,9 @@ about \LaTeX{} (or for looking into the archives):
     \item \url{comp.text.tex};
     \item \url{fr.comp.text.tex}.
 \end{enumerate}
-\begin{mcnote}
+\begin{boostnote}
     By the way, the above is an enumerated list.
-\end{mcnote}
+\end{boostnote}
 
 \subsection{Web}
 \label{sec:web}
@@ -848,7 +847,7 @@ real literate programming, like \texttt{docstrip}, \texttt{noweb},
     [language=TeX,%
     caption=Code of this document,%
     label=lst:this-doc]
-    {Using-the-MC-LaTeX-Class.tex}
+    {Using-the-Boost-LaTeX-Class.tex}
 
 
 \section{Common Errors}
@@ -929,20 +928,19 @@ There is also a jpeg2ps utility for converting "jpg" files to "eps".
 \section{Acronyms}
 \label{sec:acronyms}
 
-\mccomment[fni]{Unused acronyms are not printed. See the source file.}
+\boostcomment[fni]{Unused acronyms are not printed. See the source file.}
 
-\begin{mcnormalspacing}
+\begin{boostnormalspacing}
 \begin{acronym}[WYSIWYMX]
     \acro{CTAN}    {Comprehensive \TeX{} Archive Network}
     \acro{FNI}     {Fabrice Niessen}
-    \acro{MC}      {Mission Critical}
     \acro{SVG}     {Scalable Vector Graphics}
     \acro{TDS}     {\TeX{} Directory Structure}
     \acro{unused}  {UNUSED acronym}
     \acro{WYSIWYG} {What You See Is What You Get}
     \acro{WYSIWYM} {What You See Is What You Mean}
 \end{acronym}
-\end{mcnormalspacing}
+\end{boostnormalspacing}
 
 \end{document}
 
@@ -952,4 +950,4 @@ There is also a jpeg2ps utility for converting "jpg" files to "eps".
 %%% ispell-local-dictionary: "en_US"
 %%% End:
 
-%% Using-the-MC-LaTeX-Class.tex ends here
+%% Using-the-Boost-LaTeX-Class.tex ends here

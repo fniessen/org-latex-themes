@@ -26,4 +26,4 @@ check: test
 
 # Run the regression tests.
 test:
-	./tests/test_mcreport_toc.sh
+	./tests/test_boostreport_toc.sh

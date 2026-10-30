@@ -22,16 +22,16 @@ installation and with an Org mode oriented Emacs configuration.
 
 ** =docs/=
 
-Contains documentation related to the "mc" LaTeX classes:
+Contains documentation related to the Boost LaTeX classes:
 
-- =Using-the-MC-LaTeX-Class.pdf=
-- =Using-the-MC-LaTeX-Class.tex=
+- =Using-the-Boost-LaTeX-Class.pdf=
+- =Using-the-Boost-LaTeX-Class.tex=
 
 These files describe how to use the LaTeX classes provided.
 
 ** =lisp/=
 
-- =org-mc-latex-classes.el=
+- =org-boost-latex-classes.el=
 
 Emacs Lisp file intended to declare *custom LaTeX classes for Org mode*. It
 enables Org to export documents using the classes defined in this repository.
@@ -53,16 +53,16 @@ Org mode.
 
 Directory structure compliant with a local TeX installation.
 
-*** =texmf/tex/latex/mc/=
+*** =texmf/tex/latex/boost/=
 
 Custom LaTeX classes and styles:
 
 - =.cls= classes (article, report, book, CV, contract, etc.),
 - shared =.sty= style files.
 
-These files define a coherent family of LaTeX documents under the "mc" prefix.
+These files define a coherent family of LaTeX documents under the "boost" prefix.
 
-*** =texmf/tex/latex/beamer-mc/=
+*** =texmf/tex/latex/beamer-boost/=
 
 Custom Beamer themes:
 
@@ -92,7 +92,7 @@ Run the local regression tests with:
 make check
 #+end_src
 
-The regression test compiles a minimal =mcreport= document and checks that
+The regression test compiles a minimal =boostreport= document and checks that
 numbered and unnumbered level-four entries are included and indented
 consistently. It also checks that section headings stay within the page margins
 with stepped horizontal offsets for chapter, section, subsection, and
@@ -119,12 +119,12 @@ texhash ~/texmf
 
 ** Emacs installation
 
-Make Org export use the =mcreport= class by adding the Lisp file to your Emacs
+Make Org export use the =boostreport= class by adding the Lisp file to your Emacs
 configuration:
 
 #+begin_src emacs-lisp
 (add-to-list 'load-path "/PATH/TO/boost-org-latex-toolkit/lisp")
-(require 'org-mc-latex-classes)
+(require 'org-boost-latex-classes)
 #+end_src
 
 The exact path depends on the local location of the repository.
@@ -132,7 +132,7 @@ The exact path depends on the local location of the repository.
 Then select the class in your Org file:
 
 #+begin_src org
-#+LATEX_CLASS: mcreport
+#+LATEX_CLASS: boostreport
 #+end_src
 
 ** Set document metadata in Org
@@ -148,7 +148,7 @@ In your Org file:
 ,#+DATE:      \today
 ,#+DESCRIPTION: Short description of the document purpose.
 ,#+KEYWORDS:  Org mode, LaTeX, Emacs
-,#+LATEX_CLASS: mcreport
+,#+LATEX_CLASS: boostreport
 #+end_src
 
 What Org guarantees during LaTeX export:
@@ -165,7 +165,7 @@ Regarding the additional fields:
 
 The exact visual or semantic use of *DESCRIPTION* and *KEYWORDS* depends entirely
 on:
-- the LaTeX class (for example =mcreport=),
+- the LaTeX class (for example =boostreport=),
 - and the packages it loads (for example =hyperref=).
 
 ** Include the repository's reusable LaTeX setup snippets (optional)
@@ -189,8 +189,8 @@ The exact behavior depends on the content of each =.setup= file.
 ,#+EMAIL:     Your email
 ,#+DATE:      \today
 ,#+DESCRIPTION: Example document generated from Org mode.
-,#+KEYWORDS:  Org, LaTeX, Emacs, MC
-,#+LATEX_CLASS: mcreport
+,#+KEYWORDS:  Org, LaTeX, Emacs, Boost
+,#+LATEX_CLASS: boostreport
 
 ,* Introduction
 
@@ -208,7 +208,7 @@ Export with:
 
 The resulting LaTeX file will include:
 
-- =\documentclass{mcreport}= and
+- =\documentclass{boostreport}= and
 - standard title metadata.
 
 * License

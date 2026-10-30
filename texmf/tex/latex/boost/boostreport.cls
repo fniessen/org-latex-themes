@@ -1,18 +1,18 @@
-%% mcreport.cls -- LaTeX2e MC report class
+%% boostreport.cls -- LaTeX2e Boost report class
 %
 % Copyright (C) 2008-2026 Fabrice Niessen. All rights reserved.
 
 %* TODO
 %
 % - [ ] Review the (XXX) code
-% - [ ] Check whether `quote' environment should be replaced by the `mcquote' one
-% - [ ] Check whether `mc-bg-color' environment is still needed
+% - [ ] Check whether `quote' environment should be replaced by the `boostquote' one
+% - [ ] Check whether `boost-bg-color' environment is still needed
 
 
 %* Identification
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mcreport}[2023/05/23 v1.5 Mission Critical IT report class]
+\ProvidesClass{boostreport}[2023/05/23 v1.5 Pirilampo report class]
 
 
 % * --[ Documentation
@@ -51,9 +51,9 @@
 %
 %   - `final', for removing the DRAFT mentions
 %   - `black', for colorizing all titles and links in black only
-%   - `nocopyright', for removing the copyright symbol next to MC in the footer
-%   - `hidemccomment, do not print mccomments
-%   - `anonym', do not print the MC logo and MC in the footer
+%   - `nocopyright', for removing the copyright symbol next to Boost in the footer
+%   - `hideboostcomment, do not print boostcomments
+%   - `anonym', do not print the Pirilampo logo and Boost in the footer
 %   - `minitoc', add a minitoc at each chapter, works only with book style
 %   - `french', sets the default document language to French (babel)
 
@@ -73,7 +73,7 @@
 \newif\if@black
 \newif\if@book
 \newif\if@nocopyright
-\newif\if@mccomment
+\newif\if@boostcomment
 \newif\if@anonym
 \newif\if@minitoc
 \newif\if@french
@@ -81,47 +81,47 @@
 % new conditionals are let equal to `\iffalse' initially
 \@reporttrue
 \@drafttrue
-\@mccommenttrue
+\@boostcommenttrue
 
 \DeclareOption{article}{%
     \@articletrue%
     \@reportfalse%
-    \ClassInfo{mcreport}{Saw option `article'}}
+    \ClassInfo{boostreport}{Saw option `article'}}
 \DeclareOption{report}{%
     \@articlefalse%
     \@reporttrue%
-    \ClassInfo{mcreport}{Saw option `report'}}
+    \ClassInfo{boostreport}{Saw option `report'}}
 \DeclareOption{book}{%
     \@articlefalse%
     \@reportfalse%
     \@booktrue%
-    \ClassInfo{mcreport}{Saw option `book'}}
+    \ClassInfo{boostreport}{Saw option `book'}}
 \DeclareOption{nocopyright}{%
     \@nocopyrighttrue%
-    \ClassInfo{mcreport}{Saw option `nocopyright'}}
-\DeclareOption{hidemccomment}{%
-    \@mccommentfalse%
-    \ClassInfo{mcreport}{Saw option `hidemccomment'}}
+    \ClassInfo{boostreport}{Saw option `nocopyright'}}
+\DeclareOption{hideboostcomment}{%
+    \@boostcommentfalse%
+    \ClassInfo{boostreport}{Saw option `hideboostcomment'}}
 \DeclareOption{final}{%
     \@draftfalse%
-    \ClassInfo{mcreport}{Saw option `final'}}
+    \ClassInfo{boostreport}{Saw option `final'}}
 \DeclareOption{black}{%
     \@blacktrue%
-    \ClassInfo{mcreport}{Saw option `black'}}
+    \ClassInfo{boostreport}{Saw option `black'}}
 \DeclareOption{anonym}{%
     \@anonymtrue%
     \@nocopyrighttrue%
-    \ClassInfo{mcreport}{Saw option `anonym'}}
+    \ClassInfo{boostreport}{Saw option `anonym'}}
 \DeclareOption{minitoc}{%
     \if@book%
         \@minitoctrue%
-        \ClassInfo{mcreport}{Saw option `minitoc'}
+        \ClassInfo{boostreport}{Saw option `minitoc'}
     \else%
-        \ClassWarning{mcreport}{the `minitoc' option is ignored because it is only available in book style}%
+        \ClassWarning{boostreport}{the `minitoc' option is ignored because it is only available in book style}%
     \fi}
 \DeclareOption{french}{%
     \@frenchtrue%
-    \ClassInfo{mcreport}{Saw option `french'}}
+    \ClassInfo{boostreport}{Saw option `french'}}
 \DeclareOption*{% code to be executed for every unknown option
     \PassOptionsToClass{\CurrentOption}{article}%
     \PassOptionsToClass{\CurrentOption}{report}%
@@ -221,24 +221,24 @@
 % driver-independent color extensions
 \RequirePackage[table]{xcolor}
 
-\definecolor{mc-color-brand}{HTML}{1968BA} % blue
+\definecolor{boost-color-brand}{HTML}{1968BA} % blue
 
 \if@black
-    \definecolor{mc-color-document-title}{HTML}{000000}
-    \definecolor{mc-color-section-heading}{HTML}{000000}
-    \definecolor{mc-color-section-in-page-heading}{HTML}{000000}
-    \definecolor{mc-color-link}{HTML}{000000}
-    \definecolor{mc-color-cite}{HTML}{000000}
-    \definecolor{mc-color-file}{HTML}{000000}
-    \definecolor{mc-color-url}{HTML}{000000}
+    \definecolor{boost-color-document-title}{HTML}{000000}
+    \definecolor{boost-color-section-heading}{HTML}{000000}
+    \definecolor{boost-color-section-in-page-heading}{HTML}{000000}
+    \definecolor{boost-color-link}{HTML}{000000}
+    \definecolor{boost-color-cite}{HTML}{000000}
+    \definecolor{boost-color-file}{HTML}{000000}
+    \definecolor{boost-color-url}{HTML}{000000}
 \else
-    \definecolor{mc-color-document-title}{HTML}{1968BA} % blue (XXX)
-    \definecolor{mc-color-section-heading}{HTML}{1968BA} % blue (XXX)
-    \definecolor{mc-color-section-in-page-heading}{HTML}{000000} % black
-    \definecolor{mc-color-link}{HTML}{1968BA} % blue (TOC and intern links) (XXX)
-    \definecolor{mc-color-cite}{HTML}{1968BA} % blue
-    \definecolor{mc-color-file}{HTML}{003399} % darker blue
-    \definecolor{mc-color-url}{HTML}{003399} % darker blue
+    \definecolor{boost-color-document-title}{HTML}{1968BA} % blue (XXX)
+    \definecolor{boost-color-section-heading}{HTML}{1968BA} % blue (XXX)
+    \definecolor{boost-color-section-in-page-heading}{HTML}{000000} % black
+    \definecolor{boost-color-link}{HTML}{1968BA} % blue (TOC and intern links) (XXX)
+    \definecolor{boost-color-cite}{HTML}{1968BA} % blue
+    \definecolor{boost-color-file}{HTML}{003399} % darker blue
+    \definecolor{boost-color-url}{HTML}{003399} % darker blue
 \fi
 
 \definecolor{shadecolor}{HTML}{33D1FF} % light blue for comments?
@@ -250,23 +250,23 @@
 %* Definitions (define your own commands etc.)
 
 % Define the author's name for the copyright in the footer.
-\newcommand{\mctextlogo}[1]{\def\@mctextlogo{#1}}
+\newcommand{\boosttextlogo}[1]{\def\@boosttextlogo{#1}}
 
 % Check if the author's name should be displayed or hidden.
 \newcommand{\authorName}{\textsf{\color{black}Fabrice Niessen}}
 \if@anonym%
-    \mctextlogo{}%
+    \boosttextlogo{}%
 \else%
-    \mctextlogo{\authorName}
+    \boosttextlogo{\authorName}
 \fi
 
-\newcommand{\mcbold}[1]{\textbf{#1}}
-\newcommand{\mcred}[1]{{\color{mc-color-brand}\mcbold{#1}}}
+\newcommand{\boostbold}[1]{\textbf{#1}}
+\newcommand{\boostred}[1]{{\color{boost-color-brand}\boostbold{#1}}}
 
 
 %* Environments (such as enumerate & itemize)
 
-\newcommand{\mcsquare}{\rule[.35ex]{.5ex}{.5ex}}
+\newcommand{\boostsquare}{\rule[.35ex]{.5ex}{.5ex}}
 
 % control layout of `itemize', `enumerate', `description'
 \RequirePackage{enumitem}% (not in medium TeX Live installation)
@@ -281,9 +281,9 @@
     itemsep=3pt,
     topsep=4pt,
     parsep=0pt}
-\setitemize[1]{label=\textcolor{mc-color-brand}{\rule[.1ex]{1ex}{1ex}}}
-\setitemize[2]{label=\textcolor{mc-color-brand}{\raisebox{.1ex}{\textbullet}}}
-\setitemize[3]{label=\textcolor{mc-color-brand}{\raisebox{.1ex}{\scalebox{.8}{\(\circ\)}}}}
+\setitemize[1]{label=\textcolor{boost-color-brand}{\rule[.1ex]{1ex}{1ex}}}
+\setitemize[2]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\textbullet}}}
+\setitemize[3]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\scalebox{.8}{\(\circ\)}}}}
 \setdescription{%
 %     style=nextline,
     font=\sffamily\bfseries,%
@@ -322,19 +322,19 @@
 % smaller font size and colored background for quotes
 \renewenvironment{quote}
 {\list{}{\rightmargin\leftmargin}%
-\item\relax\small\begin{mc-bg-color}}
-    {\end{mc-bg-color}\endlist}
+\item\relax\small\begin{boost-bg-color}}
+    {\end{boost-bg-color}\endlist}
 
-\newsavebox{\mcquotationauthor}
-\newenvironment{mcquotation}[1]{
-    \ifstrempty{#1}{}{\sbox{\mcquotationauthor}{\parbox[b]{0.85\linewidth}{\raggedleft\footnotesize#1}}}%
+\newsavebox{\boostquotationauthor}
+\newenvironment{boostquotation}[1]{
+    \ifstrempty{#1}{}{\sbox{\boostquotationauthor}{\parbox[b]{0.85\linewidth}{\raggedleft\footnotesize#1}}}%
     \vskip 5mm
     \begin{center}
         \begin{minipage}{0.85\linewidth}
             \em
 }{
             \vskip 4mm
-            \usebox{\mcquotationauthor}
+            \usebox{\boostquotationauthor}
         \end{minipage}
     \end{center}
     \vskip 5mm
@@ -343,7 +343,7 @@
 % `\textcolor' chokes when it wraps multiple paragraphs
 \definecolor{myblue}{HTML}{CCCCFF}
 
-\newenvironment{mc-bg-color}
+\newenvironment{boost-bg-color}
     {%
     \noindent\begin{lrbox}{\@tempboxa}%
     \begin{minipage}%
@@ -355,7 +355,7 @@
     \end{lrbox}%
     \colorbox{myblue}{\usebox{\@tempboxa}}}
 
-\newenvironment{mc-fg-color}[1]%
+\newenvironment{boost-fg-color}[1]%
     {\color{#1}}
     {}
 
@@ -383,7 +383,7 @@
 \setlength\marginparwidth{115pt}
 \setlength\marginparsep{20pt}
 
-\newenvironment{mcnote}
+\newenvironment{boostnote}
     {\begin{list}{}{%
     \setlength{\leftmargin}{.15\linewidth}%
     \setlength{\rightmargin}{\leftmargin}}%
@@ -412,14 +412,14 @@
 \newcommand{\subtitle}[1]{\def\@subtitle{#1}}
 \subtitle{}
 
-% To customize the MC logo displayed in the title page, simply call the
-% \mctitlegraphic{XXX} command.
-%\DeclareRobustCommand{\mctitlegraphic}[1]{\def\@mctitlegraphic{#1}}
-\newcommand{\mctitlegraphic}[1]{\def\@mctitlegraphic{#1}}
+% To customize the Pirilampo logo displayed in the title page, simply call the
+% \boosttitlegraphic{XXX} command.
+%\DeclareRobustCommand{\boosttitlegraphic}[1]{\def\@boosttitlegraphic{#1}}
+\newcommand{\boosttitlegraphic}[1]{\def\@boosttitlegraphic{#1}}
 \if@anonym%
-    \mctitlegraphic{}
+    \boosttitlegraphic{}
 \else%
-    \mctitlegraphic{}
+    \boosttitlegraphic{}
 \fi%
 
 % \logo and \titlegraphic define client logo and title graphics.
@@ -431,7 +431,7 @@
 \titlegraphic{}
 
 % changing margins "on the fly" (in mid document)
-\newenvironment{mcchangemargin}[2]%
+\newenvironment{boostchangemargin}[2]%
     {\begin{list}{}{%
         \setlength{\topsep}{0pt}%
         \setlength{\leftmargin}{#1}%
@@ -450,7 +450,7 @@
         \thispagestyle{plain}
          \begin{center}
              \@titlegraphic\par
-             {\Huge \color{mc-color-document-title}\textbf{\@title}\par}%
+             {\Huge \color{boost-color-document-title}\textbf{\@title}\par}%
              \vskip 5mm
              {\large \@author\par}%
              {\large \@date\par}%
@@ -459,7 +459,7 @@
 \else
 \renewcommand{\maketitle}{%
     \thispagestyle{empty}%
-    \begin{mcchangemargin}{-3.5cm}{0cm}% TODO Abstract it: add to mc lengths!
+    \begin{boostchangemargin}{-3.5cm}{0cm}% TODO Abstract it: add to boost lengths!
         % amounts added to left and right margins:
         % \newlength{\mylen}
 	% \setlength{\mylen}{1em plus 0.5em minus 0.5em}
@@ -491,7 +491,7 @@
             \@titlegraphic\par
             \vspace{\stretch{2}}
             \normalfont
-            {\Huge \color{mc-color-document-title}\textbf{\@title}\par}%
+            {\Huge \color{boost-color-document-title}\textbf{\@title}\par}%
             \vskip 5mm
             \if@book
             \else
@@ -500,7 +500,7 @@
             \vskip 2mm
             {\large \@date\par}%
             \vspace{\stretch{3}}
-            \@mctitlegraphic
+            \@boosttitlegraphic
         \end{center}%
         % {\tiny
         % Author: svnauthor \\
@@ -508,7 +508,7 @@
         % Last changed on: svndate \\
         % URL: \url{svnkw{HeadURL}}
         % }
-    \end{mcchangemargin}
+    \end{boostchangemargin}
     \null
     \clearpage
 }
@@ -518,7 +518,7 @@
 
 % extensive control of page headers and footers
 \RequirePackage{fancyhdr} % must be loaded after `geometry'
-\ClassInfo{mcreport}{Using fancier footers than usual}
+\ClassInfo{boostreport}{Using fancier footers than usual}
 
 \newcommand{\footfont}{
     \fontsize{7pt}{0pt}\sffamily\selectfont
@@ -527,18 +527,18 @@
     \fontsize{8pt}{8pt}\sffamily\selectfont
 }
 
-% MC page headers definition
-\newcommand{\mcheadl}{
+% Boost page headers definition
+\newcommand{\boostheadl}{
     \headfont\textsc{\@title}}
-\newcommand{\mcheadr}{\headfont%
+\newcommand{\boostheadr}{\headfont%
     \if@article
         \@subtitle%
     \else
         \leftmark%
     \fi}
-\newcommand{\mcheadc}{}
+\newcommand{\boostheadc}{}
 
-\newcommand{\mccopyright}{%
+\newcommand{\boostcopyright}{%
     \if@nocopyright
         \relax
     \else
@@ -546,12 +546,12 @@
     \fi
 }
 
-\newcommand{\mcfootl}{\footfont\raisebox{0.25mm}[0mm][-0.25mm]{\mccopyright}\@mctextlogo}
-\newcommand{\mcfootc}{\footfont\@date
+\newcommand{\boostfootl}{\footfont\raisebox{0.25mm}[0mm][-0.25mm]{\boostcopyright}\@boosttextlogo}
+\newcommand{\boostfootc}{\footfont\@date
   \if@draft
   \\\bf -- DRAFT --
   \fi}
-\newcommand{\mcfootr}{\footfont\thepage}
+\newcommand{\boostfootr}{\footfont\thepage}
 
 
 \fancypagestyle{empty}{%
@@ -564,9 +564,9 @@
     \fancyhf{} % clear all header and footer fields
     \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
     \renewcommand{\headrulewidth}{0.0pt}
-    \fancyfoot[L]{\mcfootl{}}
-    \fancyfoot[C]{\mcfootc{}}
-    \fancyfoot[R]{\mcfootr{}}
+    \fancyfoot[L]{\boostfootl{}}
+    \fancyfoot[C]{\boostfootc{}}
+    \fancyfoot[R]{\boostfootr{}}
     \renewcommand{\footrulewidth}{0.4pt}
 }
 
@@ -574,13 +574,13 @@
 \fancypagestyle{headings}{%
     \fancyhf{} % clear all header and footer fields
     \fancyhfoffset[L]{2.5cm} % offset to be applied to the header/footer
-    \fancyhead[L]{\mcheadl{}}
-    \fancyhead[R]{\mcheadr{}}
-    \fancyhead[C]{\mcheadc{}}
+    \fancyhead[L]{\boostheadl{}}
+    \fancyhead[R]{\boostheadr{}}
+    \fancyhead[C]{\boostheadc{}}
     \renewcommand{\headrulewidth}{0.4pt}
-    \fancyfoot[L]{\mcfootl{}}
-    \fancyfoot[C]{\mcfootc{}}
-    \fancyfoot[R]{\mcfootr{}}
+    \fancyfoot[L]{\boostfootl{}}
+    \fancyfoot[C]{\boostfootc{}}
+    \fancyfoot[R]{\boostfootr{}}
     \renewcommand{\footrulewidth}{0.4pt}
 }
 
@@ -595,7 +595,7 @@
 
 % color page headings (very naughty)
 \renewcommand{\MakeUppercase}[1]{%
-    \color{mc-color-section-in-page-heading}\textsf{#1}}
+    \color{boost-color-section-in-page-heading}\textsf{#1}}
 
 
 %* Sectioning (how to section properly)
@@ -665,7 +665,7 @@
 \RequirePackage{sectsty}% (not in medium TeX Live installation)
 % redefine the font used for all section headings
 \allsectionsfont{\usefont{T1}{phv}{b}{n}\selectfont% Helvetica-Narrow Bold
-    \color{mc-color-section-heading}% make all section headings colored
+    \color{boost-color-section-heading}% make all section headings colored
     \nobreak}% because `\color' inserts a breakpoint
 
 % select alternative section titles
@@ -684,7 +684,7 @@
 \AddToHook{cmd/subparagraph/before}{\Needspace{4\baselineskip}}
 
 % Use small, stepped title offsets inside landscape pages only.
-\AddToHook{env/landscape/begin}[mcreport-landscape-title-spacing]{%
+\AddToHook{env/landscape/begin}[boostreport-landscape-title-spacing]{%
     \titlespacing*{\chapter}{-0.4cm}{50pt}{\ttl@chapafter}%
     \titlespacing{\section}{-0.3cm}{12pt}{9pt}%
     \titlespacing{\subsection}{-0.2cm}{12pt}{6pt}%
@@ -696,7 +696,7 @@
 % command for the paragraph, the font selection done with allsectionsfont was
 % lost.
 \titleformat{\paragraph}[hang]
-   {\usefont{T1}{phv}{b}{n}\selectfont\color{mc-color-section-heading}\nobreak\bfseries}
+   {\usefont{T1}{phv}{b}{n}\selectfont\color{boost-color-section-heading}\nobreak\bfseries}
    {}
    {}
    {}
@@ -705,7 +705,7 @@
 % Chapter header
 \titleformat{\chapter}[hang]% shape
     {\fontsize{20pt}{24pt}\selectfont\sffamily\bfseries%
-    \color{mc-color-section-heading}\vspace{30pt}}% fmt
+    \color{boost-color-section-heading}\vspace{30pt}}% fmt
     {\thechapter.}% label (heading number)
     {2mm}% sep
     {}% bef
@@ -785,111 +785,111 @@
 %\RequirePackage[toc]{multitoc}
 
 % Define TOC indentations
-\newlength{\mctocindentlevelone}
-\newlength{\mctocindentleveltwo}
-\newlength{\mctocindentlevelthree}
-\newlength{\mctocindentlevelfour}
-\setlength{\mctocindentlevelone}{7mm}
-\setlength{\mctocindentleveltwo}{19mm}
-\setlength{\mctocindentlevelthree}{32mm}
-\setlength{\mctocindentlevelfour}{41mm}
+\newlength{\boosttocindentlevelone}
+\newlength{\boosttocindentleveltwo}
+\newlength{\boosttocindentlevelthree}
+\newlength{\boosttocindentlevelfour}
+\setlength{\boosttocindentlevelone}{7mm}
+\setlength{\boosttocindentleveltwo}{19mm}
+\setlength{\boosttocindentlevelthree}{32mm}
+\setlength{\boosttocindentlevelfour}{41mm}
 
-\newlength{\mctocbeforelevelone}
-\newlength{\mctocbeforeleveltwo}
-\newlength{\mctocbeforelevelthree}
-\newlength{\mctocbeforelevelfour}
-\setlength{\mctocbeforelevelone}{6mm}
-\setlength{\mctocbeforeleveltwo}{3mm}
-\setlength{\mctocbeforelevelthree}{0mm}
-\setlength{\mctocbeforelevelfour}{0mm}
+\newlength{\boosttocbeforelevelone}
+\newlength{\boosttocbeforeleveltwo}
+\newlength{\boosttocbeforelevelthree}
+\newlength{\boosttocbeforelevelfour}
+\setlength{\boosttocbeforelevelone}{6mm}
+\setlength{\boosttocbeforeleveltwo}{3mm}
+\setlength{\boosttocbeforelevelthree}{0mm}
+\setlength{\boosttocbeforelevelfour}{0mm}
 
-\newlength{\mctoclabelseplevelone}
-\newlength{\mctoclabelsepleveltwo}
-\newlength{\mctoclabelseplevelthree}
-\newlength{\mctoclabelseplevelfour}
-\setlength{\mctoclabelseplevelone}{7mm}
-\setlength{\mctoclabelsepleveltwo}{11mm}
-\setlength{\mctoclabelseplevelthree}{13mm}
-\setlength{\mctoclabelseplevelfour}{13mm}
+\newlength{\boosttoclabelseplevelone}
+\newlength{\boosttoclabelsepleveltwo}
+\newlength{\boosttoclabelseplevelthree}
+\newlength{\boosttoclabelseplevelfour}
+\setlength{\boosttoclabelseplevelone}{7mm}
+\setlength{\boosttoclabelsepleveltwo}{11mm}
+\setlength{\boosttoclabelseplevelthree}{13mm}
+\setlength{\boosttoclabelseplevelfour}{13mm}
 
-\newlength{\mctocindentchapter}
-\newlength{\mctocindentsection}
-\newlength{\mctocindentsubsection}
-\newlength{\mctocindentsubsubsection}
+\newlength{\boosttocindentchapter}
+\newlength{\boosttocindentsection}
+\newlength{\boosttocindentsubsection}
+\newlength{\boosttocindentsubsubsection}
 
-\newlength{\mctocbeforechapter}
-\newlength{\mctocbeforesection}
-\newlength{\mctocbeforesubsection}
-\newlength{\mctocbeforesubsubsection}
+\newlength{\boosttocbeforechapter}
+\newlength{\boosttocbeforesection}
+\newlength{\boosttocbeforesubsection}
+\newlength{\boosttocbeforesubsubsection}
 
-\newlength{\mctoclabelsepchapter}
-\newlength{\mctoclabelsepsection}
-\newlength{\mctoclabelsepsubsection}
-\newlength{\mctoclabelsepsubsubsection}
+\newlength{\boosttoclabelsepchapter}
+\newlength{\boosttoclabelsepsection}
+\newlength{\boosttoclabelsepsubsection}
+\newlength{\boosttoclabelsepsubsubsection}
 
 % Define TOC formats
-\newcommand{\mctocformatlevelone}{\sffamily\Large\bfseries}
-\newcommand{\mctocformatleveltwo}{\sffamily\large}
-\newcommand{\mctocformatlevelthree}{\sffamily}
-\newcommand{\mctocformatlevelfour}{\sffamily}
+\newcommand{\boosttocformatlevelone}{\sffamily\Large\bfseries}
+\newcommand{\boosttocformatleveltwo}{\sffamily\large}
+\newcommand{\boosttocformatlevelthree}{\sffamily}
+\newcommand{\boosttocformatlevelfour}{\sffamily}
 
-\setlength{\mctocindentchapter}{\mctocindentlevelone}
-\newcommand{\mctocformatchapter}{\mctocformatlevelone}
-\setlength{\mctocbeforechapter}{\mctocbeforelevelone}
-\setlength{\mctoclabelsepchapter}{\mctoclabelseplevelone}
+\setlength{\boosttocindentchapter}{\boosttocindentlevelone}
+\newcommand{\boosttocformatchapter}{\boosttocformatlevelone}
+\setlength{\boosttocbeforechapter}{\boosttocbeforelevelone}
+\setlength{\boosttoclabelsepchapter}{\boosttoclabelseplevelone}
 \if@article
-    \setlength{\mctocindentsection}{\mctocindentlevelone}
-    \setlength{\mctocindentsubsection}{\mctocindentleveltwo}
-    \setlength{\mctocindentsubsubsection}{\mctocindentlevelthree}
-    \newcommand{\mctocformatsection}{\mctocformatlevelone}
-    \newcommand{\mctocformatsubsection}{\mctocformatleveltwo}
-    \newcommand{\mctocformatsubsubsection}{\mctocformatlevelthree}
-    \setlength{\mctocbeforesection}{\mctocbeforelevelone}
-    \setlength{\mctocbeforesubsection}{\mctocbeforeleveltwo}
-    \setlength{\mctocbeforesubsubsection}{\mctocbeforelevelthree}
-    \setlength{\mctoclabelsepsection}{\mctoclabelseplevelone}
-    \setlength{\mctoclabelsepsubsection}{\mctoclabelsepleveltwo}
-    \setlength{\mctoclabelsepsubsubsection}{\mctoclabelseplevelthree}
+    \setlength{\boosttocindentsection}{\boosttocindentlevelone}
+    \setlength{\boosttocindentsubsection}{\boosttocindentleveltwo}
+    \setlength{\boosttocindentsubsubsection}{\boosttocindentlevelthree}
+    \newcommand{\boosttocformatsection}{\boosttocformatlevelone}
+    \newcommand{\boosttocformatsubsection}{\boosttocformatleveltwo}
+    \newcommand{\boosttocformatsubsubsection}{\boosttocformatlevelthree}
+    \setlength{\boosttocbeforesection}{\boosttocbeforelevelone}
+    \setlength{\boosttocbeforesubsection}{\boosttocbeforeleveltwo}
+    \setlength{\boosttocbeforesubsubsection}{\boosttocbeforelevelthree}
+    \setlength{\boosttoclabelsepsection}{\boosttoclabelseplevelone}
+    \setlength{\boosttoclabelsepsubsection}{\boosttoclabelsepleveltwo}
+    \setlength{\boosttoclabelsepsubsubsection}{\boosttoclabelseplevelthree}
 \else
-    \setlength{\mctocindentsection}{\mctocindentleveltwo}
-    \setlength{\mctocindentsubsection}{\mctocindentlevelthree}
-    \setlength{\mctocindentsubsubsection}{\mctocindentlevelfour}
-    \newcommand{\mctocformatsection}{\mctocformatleveltwo}
-    \newcommand{\mctocformatsubsection}{\mctocformatlevelthree}
-    \newcommand{\mctocformatsubsubsection}{\mctocformatlevelfour}
-    \setlength{\mctocbeforesection}{\mctocbeforeleveltwo}
-    \setlength{\mctocbeforesubsection}{\mctocbeforelevelthree}
-    \setlength{\mctocbeforesubsubsection}{\mctocbeforelevelfour}
-    \setlength{\mctoclabelsepsection}{\mctoclabelsepleveltwo}
-    \setlength{\mctoclabelsepsubsection}{\mctoclabelseplevelthree}
-    \setlength{\mctoclabelsepsubsubsection}{\mctoclabelseplevelfour}
+    \setlength{\boosttocindentsection}{\boosttocindentleveltwo}
+    \setlength{\boosttocindentsubsection}{\boosttocindentlevelthree}
+    \setlength{\boosttocindentsubsubsection}{\boosttocindentlevelfour}
+    \newcommand{\boosttocformatsection}{\boosttocformatleveltwo}
+    \newcommand{\boosttocformatsubsection}{\boosttocformatlevelthree}
+    \newcommand{\boosttocformatsubsubsection}{\boosttocformatlevelfour}
+    \setlength{\boosttocbeforesection}{\boosttocbeforeleveltwo}
+    \setlength{\boosttocbeforesubsection}{\boosttocbeforelevelthree}
+    \setlength{\boosttocbeforesubsubsection}{\boosttocbeforelevelfour}
+    \setlength{\boosttoclabelsepsection}{\boosttoclabelsepleveltwo}
+    \setlength{\boosttoclabelsepsubsection}{\boosttoclabelseplevelthree}
+    \setlength{\boosttoclabelsepsubsubsection}{\boosttoclabelseplevelfour}
 \fi
 
-\titlecontents{chapter} [\mctocindentchapter]% [left]
-    {\addvspace{\mctocbeforechapter}}% {above}
-    {\mctocformatchapter\color{mc-color-section-heading}\contentslabel{\mctoclabelsepchapter}}% {before with label}
-    {\mctocformatchapter\hskip -\mctocindentchapter}% {before without label}
-    {\mctocformatchapter\hskip 1mm\titlerule*[2mm]{.}\contentspage}% {filler and page}
+\titlecontents{chapter} [\boosttocindentchapter]% [left]
+    {\addvspace{\boosttocbeforechapter}}% {above}
+    {\boosttocformatchapter\color{boost-color-section-heading}\contentslabel{\boosttoclabelsepchapter}}% {before with label}
+    {\boosttocformatchapter\hskip -\boosttocindentchapter}% {before without label}
+    {\boosttocformatchapter\hskip 1mm\titlerule*[2mm]{.}\contentspage}% {filler and page}
     [\addvspace{0mm}]% [after]
 
-\titlecontents{section} [\mctocindentsection]% [left]
-    {\addvspace{\mctocbeforesection}}% {above}
-    {\mctocformatsection\color{mc-color-section-heading}\contentslabel{\mctoclabelsepsection}}% {before with label}
-    {\mctocformatsection\hskip -\mctocindentsection}% {before without label}
-    {\mctocformatsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}% {filler and page}
+\titlecontents{section} [\boosttocindentsection]% [left]
+    {\addvspace{\boosttocbeforesection}}% {above}
+    {\boosttocformatsection\color{boost-color-section-heading}\contentslabel{\boosttoclabelsepsection}}% {before with label}
+    {\boosttocformatsection\hskip -\boosttocindentsection}% {before without label}
+    {\boosttocformatsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}% {filler and page}
     [\addvspace{0mm}]% [after]
 
-\titlecontents{subsection} [\mctocindentsubsection]
-    {\addvspace{\mctocbeforesubsection}}
-    {\mctocformatsubsection\color{mc-color-section-heading}\contentslabel{\mctoclabelsepsubsection}}
-    {\mctocformatsubsection\hskip -\mctocindentsubsection}
-    {\mctocformatsubsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}
+\titlecontents{subsection} [\boosttocindentsubsection]
+    {\addvspace{\boosttocbeforesubsection}}
+    {\boosttocformatsubsection\color{boost-color-section-heading}\contentslabel{\boosttoclabelsepsubsection}}
+    {\boosttocformatsubsection\hskip -\boosttocindentsubsection}
+    {\boosttocformatsubsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}
 
-\titlecontents{subsubsection} [\mctocindentsubsubsection]
-    {\addvspace{\mctocbeforesubsubsection}}
-    {\mctocformatsubsubsection\color{mc-color-section-heading}\contentslabel{\mctoclabelsepsubsubsection}}
-    {\mctocformatsubsubsection}
-    {\mctocformatsubsubsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}
+\titlecontents{subsubsection} [\boosttocindentsubsubsection]
+    {\addvspace{\boosttocbeforesubsubsection}}
+    {\boosttocformatsubsubsection\color{boost-color-section-heading}\contentslabel{\boosttoclabelsepsubsubsection}}
+    {\boosttocformatsubsubsection}
+    {\boosttocformatsubsubsection\hskip 1mm\titlerule*[2mm]{.}\contentspage}
 
 % For tocdepth: part=level -1; chapter=level 0; section= level 1; etc.
 \if@minitoc
@@ -991,11 +991,11 @@
 \ifxetex
     \urlstyle{sf}
 \else
-% define a new `mc' style for the package that will use a smaller font
-\def\url@mcstyle{%
+% define a new `boost' style for the package that will use a smaller font
+\def\url@booststyle{%
 \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\footnotesize\sffamily}}} % (XXX)
 % now, actually use the newly defined style
-\urlstyle{mc}%
+\urlstyle{boost}%
 \fi
 
 %% adds an additional page reference to `\ref'
@@ -1008,11 +1008,11 @@
   bookmarksnumbered,% include section numbers
   bookmarksopen=false,% subtrees not expanded
   breaklinks=true,% allow hyperlinks to wrap over lines
-  citecolor=mc-color-cite,% color of links to bibliography
+  citecolor=boost-color-cite,% color of links to bibliography
   colorlinks=true,% avoid the red boxed around cross-references
-  filecolor=mc-color-file,% color of file links
+  filecolor=boost-color-file,% color of file links
   % hyperindex,% link index to text
-  linkcolor=mc-color-link,% color of internal links
+  linkcolor=boost-color-link,% color of internal links
   pageanchor=true,% makes an anchor on every page (to be able to make links to pages)
   % pagebackref,% in bibliography: show page numbers where mentioned. backref: show sections
   pdffitwindow=true,% page fit to window when opened
@@ -1024,7 +1024,7 @@
   pdftoolbar=true,% show Acrobat's toolbar?
   plainpages=false,% anchors have formatted form, i.e. ii != 2
   unicode=false,% non-Latin characters in Acrobat's bookmarks
-  urlcolor=mc-color-url,% color of external links
+  urlcolor=boost-color-url,% color of external links
 }%
 
 %% We'll use the url{} command from the url package to typeset filenames
@@ -1058,12 +1058,12 @@
     \let\nwdocspar=\par%
 }%
 {% else
-    \ClassWarning{mcreport}{`noweb' package not loaded -> some symbols will fail}%
+    \ClassWarning{boostreport}{`noweb' package not loaded -> some symbols will fail}%
 }%
 
 
-% mcdocument
-\RequirePackage{mcdocument}%
+% boostdocument
+\RequirePackage{boostdocument}%
 
 % Define the numprint thousand separator.
 % XXX This could be done by defining the correct style per language with
@@ -1076,7 +1076,7 @@
 
 % % Typeset SI numbers in color in draft mode
 % \if@draft%
-%     \sisetup{colorall,color=mc-color-section-heading}%
+%     \sisetup{colorall,color=boost-color-section-heading}%
 % \fi%
 
 % % If french, use a dot as digit separator
@@ -1140,13 +1140,13 @@
 
 \if@french%
     \AtBeginDocument{\selectlanguage{french}}%
-    \ClassInfo{mcreport}{Using french language}%
+    \ClassInfo{boostreport}{Using french language}%
 \else % This is a workaround as when you pass the 'english' option you get the
       % labels in french. This is due to the fact that babel will load the
       % english language first and thus, the french language will become the
       % default one.
     \AtBeginDocument{\selectlanguage{english}}%
-    \ClassInfo{mcreport}{Using english language}%
+    \ClassInfo{boostreport}{Using english language}%
 \fi%
 
 % > Je cherche à utiliser un nouveau package à savoir "dropping", qui
@@ -1169,4 +1169,4 @@
 % time-stamp-end: " "
 % End:
 
-%% mcreport.cls ends here
+%% boostreport.cls ends here

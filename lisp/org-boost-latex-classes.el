@@ -1,7 +1,7 @@
-;;; org-mc-latex-classes.el --- Custom Org LaTeX classes for MCit -*- lexical-binding: t; -*-
+;;; org-boost-latex-classes.el --- Custom Org LaTeX classes for Boost -*- lexical-binding: t; -*-
 ;;; Commentary:
 
-;; Define the custom MCit LaTeX classes used by Org's LaTeX exporter.
+;; Define the custom Boost LaTeX classes used by Org's LaTeX exporter.
 ;;
 ;; These classes suppress Org's default package list as well as
 ;; `org-latex-packages-alist'.  Package loading is expected to be performed by
@@ -12,14 +12,14 @@
 
 (require 'ox-latex)
 
-(defconst org-mc-latex-packages-header
+(defconst org-boost-latex-packages-header
   (concat
    "[NO-DEFAULT-PACKAGES]\n"
    "[NO-PACKAGES]\n"
-   "% org-mc-latex-classes.el --------------------------\n"
+   "% org-boost-latex-classes.el --------------------------\n"
    "% Additional LaTeX headers from #+LATEX_HEADER lines\n"
    "[EXTRA]\n"
-   "% End of org-mc-latex-classes.el -------------------\n")
+   "% End of org-boost-latex-classes.el -------------------\n")
   "Template inserted immediately after the `\\documentclass' declaration.
 
 The placeholders have the following meanings:
@@ -28,40 +28,40 @@ The placeholders have the following meanings:
 - `[NO-PACKAGES]' suppresses packages from `org-latex-packages-alist'.
 - `[EXTRA]' expands to user-defined `#+LATEX_HEADER:' lines.")
 
-(defconst org-mc-latex-article-sections
+(defconst org-boost-latex-article-sections
   '(("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
     ("\\paragraph{%s}" . "\\paragraph*{%s}")
     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-  "Sectioning commands for article-like MCit LaTeX classes.")
+  "Sectioning commands for article-like Boost LaTeX classes.")
 
-(defconst org-mc-latex-report-sections
+(defconst org-boost-latex-report-sections
   '(("\\chapter{%s}" . "\\chapter*{%s}")
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
     ("\\paragraph{%s}" . "\\paragraph*{%s}"))
-  "Sectioning commands for report-like MCit LaTeX classes.")
+  "Sectioning commands for report-like Boost LaTeX classes.")
 
-(defconst org-mc-latex-book-sections
+(defconst org-boost-latex-book-sections
   '(("\\part{%s}" . "\\part*{%s}")
     ("\\chapter{%s}" . "\\chapter*{%s}")
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-  "Sectioning commands for book-like MCit LaTeX classes.")
+  "Sectioning commands for book-like Boost LaTeX classes.")
 
-(defconst org-mc-latex-class-groups
-  `((,org-mc-latex-article-sections "mcarticle")
-    (,org-mc-latex-report-sections
-     "mcreport"
+(defconst org-boost-latex-class-groups
+  `((,org-boost-latex-article-sections "boostarticle")
+    (,org-boost-latex-report-sections
+     "boostreport"
      "aremis")
-    (,org-mc-latex-book-sections
-     "mcbook"))
+    (,org-boost-latex-book-sections
+     "boostbook"))
   "Mapping between custom LaTeX classes and their sectioning commands.")
 
-(defun org-mc-copy-section-specs (sections)
+(defun org-boost-copy-section-specs (sections)
   "Return a deep copy of Org LaTeX section specifications."
   (mapcar
    (lambda (cell)
@@ -69,7 +69,7 @@ The placeholders have the following meanings:
            (copy-sequence (cdr cell))))
    sections))
 
-(defun org-mc-latex-register-class (name sections)
+(defun org-boost-latex-register-class (name sections)
   "Register an Org LaTeX class named NAME using SECTIONS.
 
 NAME is used both as the Org class name and as the LaTeX
@@ -80,18 +80,18 @@ SECTIONS is an Org LaTeX sectioning specification."
                `(,name
                  ,(format "\\documentclass{%s}\n%s"
                           name
-                          org-mc-latex-packages-header)
+                          org-boost-latex-packages-header)
                  ,@(copy-tree sections t))))
 
-(dolist (group org-mc-latex-class-groups)
+(dolist (group org-boost-latex-class-groups)
   (let ((sections (car group)))
     (dolist (class (cdr group))
-      (org-mc-latex-register-class
+      (org-boost-latex-register-class
        class
-       (org-mc-copy-section-specs sections)))))
+       (org-boost-copy-section-specs sections)))))
 
-(setq org-latex-default-class "mcarticle")
+(setq org-latex-default-class "boostarticle")
 
-(provide 'org-mc-latex-classes)
+(provide 'org-boost-latex-classes)
 
-;;; org-mc-latex-classes.el ends here
+;;; org-boost-latex-classes.el ends here
