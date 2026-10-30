@@ -1,5 +1,7 @@
 # -*- mode: org; -*-
 
+# TODO Why is listings still using pcrr8t?
+
 #+LATEX_HEADER: % ==============================================================
 #+LATEX_HEADER: % BEGIN SETUPFILE: latex-listings.setup
 #+LATEX_HEADER: %
@@ -22,8 +24,8 @@
 #+LATEX_HEADER: \definecolor{mc@lstcomment}{HTML}{008200}    % Green.
 #+LATEX_HEADER: \definecolor{mc@lststring}{HTML}{FF5500}     % Orange.
 #+LATEX_HEADER: \definecolor{mc@lstkeyword}{HTML}{0000FF}    % Blue.
-#+LATEX_HEADER: \definecolor{mc@lstbackground}{HTML}{FFFFCC} % Light yellow.
-#+LATEX_HEADER: \definecolor{mc@lstframe}{HTML}{FFEE88}      % Pale yellow.
+#+LATEX_HEADER: \definecolor{mc@lstbackground}{HTML}{FFFDE7} % Warm light yellow.
+#+LATEX_HEADER: \definecolor{mc@lstframe}{HTML}{F0E6A0}      % Soft yellow border.
 #+LATEX_HEADER:
 #+LATEX_HEADER: \definecolor{mc@lstgitcmd}{HTML}{0000FF}      % Blue: git, cd, ls, ...
 #+LATEX_HEADER: \definecolor{mc@lstgitsubcmd}{HTML}{008080}   % Teal: commit, log, merge, ...
