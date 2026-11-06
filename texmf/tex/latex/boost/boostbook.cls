@@ -5,7 +5,7 @@
 %* Identification
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{boostbook}[2009/12/08 v1.0 Pirilampo book class]
+\ProvidesClass{boostbook}[2026/11/06 v2.0 Pirilampo book class]
 
 %* Requires
 

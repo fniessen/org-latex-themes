@@ -5,7 +5,7 @@
 %* Identification
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{boostarticle}[2009/12/08 v1.0 Pirilampo article class]
+\ProvidesClass{boostarticle}[2026/11/06 v2.0 Pirilampo article class]
 
 %* Requires
 

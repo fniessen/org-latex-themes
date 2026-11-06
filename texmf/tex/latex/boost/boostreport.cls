@@ -12,7 +12,7 @@
 %* Identification
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{boostreport}[2023/05/23 v1.5 Pirilampo report class]
+\ProvidesClass{boostreport}[2026/11/06 v2.0 Pirilampo report class]
 
 
 %* Documentation
