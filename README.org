@@ -104,7 +104,24 @@ markers at their first three levels. Circles are drawn with outer diameters
 relative to the text's x-height: 0.7 ex for the filled circle and 0.6 ex for the
 open circle, so the filled circle remains larger regardless of the text font.
 
-It requires =lualatex= and =pdftotext=.
+Dependency checks also compile all three Boost classes with the default language
+and the explicit =english= and =french= options, exercising equations and
+references, colored long tables, listings, links, acronyms, boxes, and TODO
+notes. They verify that =babel= precedes =listings=, that =babel=, =amsmath=, and
+=longtable= precede =hyperref=, and that =todonotes= follows =hyperref=. The reusable
+=boostlistings= and =boostboxes= styles are also tested with the standard =article=
+class.
+
+The classes apply their language selection after Babel's begin-document
+initialization, so explicit language options are not overwritten. The checks
+also verify the rendered TOC title: "Contents" or "Table des matières".
+
+Org export tests cover class registration and explicit class options. They
+compile French and English Org documents with all three classes, checking the
+TOC title in the resulting PDFs. Tests run with =emacs -Q= and do not load a
+personal Emacs configuration.
+
+The checks require =lualatex=, =pdftotext=, and =emacs= with Org mode.
 
 * Usage in Org mode
 
@@ -140,6 +157,20 @@ Then select the class in your Org file:
 ** Set document metadata in Org
 
 Org standard metadata keywords are used to populate the LaTeX document.
+
+For French or English documents, set both the Org language and the matching
+LaTeX class option:
+
+#+begin_src org
+,#+LANGUAGE: fr
+,#+LATEX_CLASS: boostreport
+,#+LATEX_CLASS_OPTIONS: [final,french]
+#+end_src
+
+For English, use =#+LANGUAGE: en= and =[final,english]=. The LaTeX option controls
+automatic titles such as "Table des matières" or "Contents". Synchronizing this
+option automatically from =#+LANGUAGE:= is the responsibility of the user's
+Emacs configuration (for example, Emacs Leuven), not this repository.
 
 In your Org file:
 

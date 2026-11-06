@@ -27,3 +27,5 @@ check: test
 # Run the regression tests.
 test:
 	./tests/test_boostreport_toc.sh
+	./tests/test_boost_dependencies.sh
+	emacs --batch -Q -L lisp -l tests/test_org_boost_latex_classes.el -f ert-run-tests-batch-and-exit

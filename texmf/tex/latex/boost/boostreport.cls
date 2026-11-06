@@ -823,8 +823,9 @@
 %% adds an additional page reference to `\ref'
 % \RequirePackage[french,english]{varioref}
 
-% hyperref
-\RequirePackage[pdfusetitle]{hyperref}%
+% Load shared dependencies before hyperref, preserving the class options.
+\PassOptionsToPackage{pdfusetitle}{hyperref}
+\RequirePackage{boostdocument}
 \hypersetup{%
   % bookmarks=true,% make PDF bookmarks
   bookmarksnumbered,% include section numbers
@@ -868,9 +869,6 @@
 }%
 
 
-% boostdocument
-\RequirePackage{boostdocument}%
-
 % Define the numprint thousand separator.
 % XXX This could be done by defining the correct style per language with
 % \renewcommand*\npstyleenglish and \renewcommand*\npstylefrench and passing
@@ -894,22 +892,18 @@
 \RequirePackage{array, booktabs}%
 \RequirePackage{caption}%
 
-\RequirePackage{colortbl}%
-
 %% FIXME If book
 \RequirePackage{makeidx}%
 \makeindex % after compiling your LaTeX file, run `makeindex filename'
            % (without a file extension) and compile your LaTeX file again
 
 
+% Apply the requested language after Babel's begin-document initialization.
 \if@french%
-    \AtBeginDocument{\selectlanguage{french}}%
+    \AddToHook{begindocument/end}{\selectlanguage{french}}%
     \ClassInfo{boostreport}{Using french language}%
-\else % This is a workaround as when you pass the 'english' option you get the
-      % labels in french. This is due to the fact that babel will load the
-      % english language first and thus, the french language will become the
-      % default one.
-    \AtBeginDocument{\selectlanguage{english}}%
+\else
+    \AddToHook{begindocument/end}{\selectlanguage{english}}%
     \ClassInfo{boostreport}{Using english language}%
 \fi%
 

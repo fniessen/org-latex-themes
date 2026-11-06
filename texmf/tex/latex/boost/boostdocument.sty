@@ -12,9 +12,7 @@
 % multilingual support for LaTeX
 \RequirePackage[french,english]{babel} % main language is the latest loaded
 \RequirePackage[printonlyused]{acronym}% (not in medium TeX Live installation)
-\RequirePackage{listings} % must be loaded after `babel'
-
-\RequirePackage{boostlistings}
+\RequirePackage{boostlistings} % loads listings after babel
 \RequirePackage[iso]{datetime}
 
 \RequirePackage{etoolbox} % contains the ifstrempty command
@@ -31,9 +29,8 @@
 \RequirePackage{amssymb}
 \RequirePackage{marvosym} % it loads the eurosym package with "official" option.
 \RequirePackage{textcomp} % mainly for \texteuro
-\RequirePackage{hyperref} % likes to be loaded last (behalf exceptions)
-
 \RequirePackage{boostboxes}
+\RequirePackage{hyperref} % after shared dependencies, before link definitions and todonotes
 
 %* --[ Setup -----------------------------------------------------------------
 
