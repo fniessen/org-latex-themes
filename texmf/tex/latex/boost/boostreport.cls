@@ -282,8 +282,8 @@
     topsep=4pt,
     parsep=0pt}
 \setitemize[1]{label=\textcolor{boost-color-brand}{\rule[.1ex]{1ex}{1ex}}}
-\setitemize[2]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\textbullet}}}
-\setitemize[3]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\scalebox{.8}{\(\circ\)}}}}
+\setitemize[2]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\tikz{\fill (0,0) circle[radius=.35ex];}}}}
+\setitemize[3]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\tikz{\draw[line width=.06ex] (0,0) circle[radius=.27ex];}}}}
 \setdescription{%
 %     style=nextline,
     font=\sffamily\bfseries,%

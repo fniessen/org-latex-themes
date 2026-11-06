@@ -100,7 +100,9 @@ subsubsection headings in landscape mode, and that portrait spacing is restored
 afterward.
 
 Nested itemize lists use compact blue square, filled-circle, and open-circle
-markers at their first three levels.
+markers at their first three levels. Circles are drawn with outer diameters
+relative to the text's x-height: 0.7 ex for the filled circle and 0.6 ex for the
+open circle, so the filled circle remains larger regardless of the text font.
 
 It requires =lualatex= and =pdftotext=.
 

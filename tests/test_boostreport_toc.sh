@@ -20,6 +20,8 @@ cat > "$WORK_DIR/toc-regression.tex" <<'EOF'
 \title{TOC regression}
 \setcounter{secnumdepth}{3}
 \AtBeginDocument{\setcounter{tocdepth}{3}}
+\newsavebox{\filledmarker}
+\newsavebox{\openmarker}
 
 \begin{document}
 \tableofcontents
@@ -41,8 +43,16 @@ Content.
 \item First-level item
   \begin{itemize}
   \item Second-level item
+    \sbox{\filledmarker}{\labelitemii}
     \begin{itemize}
     \item Third-level item
+      \sbox{\openmarker}{\labelitemiii}
+      \ifdim\ht\filledmarker>\ht\openmarker\else
+        \errmessage{Expected the filled list marker to be taller than the open marker}
+      \fi
+      \ifdim\wd\filledmarker>1.1\wd\openmarker\else
+        \errmessage{Expected the filled list marker diameter to exceed the open marker by at least 10 percent}
+      \fi
     \end{itemize}
   \end{itemize}
 \end{itemize}
