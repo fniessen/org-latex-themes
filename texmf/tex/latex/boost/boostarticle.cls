@@ -1,28 +1,29 @@
 %% boostarticle.cls -- LaTeX2e Boost article class
 %
-% Copyright (C) 2008-2009 Francesco Pizzolante
+% Copyright (C) 2008-2026 Fabrice Niessen. All rights reserved.
 
-%* --[ Identification
+%* Identification
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{boostarticle}[2009/12/08 v1.0 Pirilampo article class]
 
-%* --[ Requires
+%* Requires
+
 %   - boostreport
 
-%* --[ Options
+%* Options
+
 %   - see the boostreport class for the complete list of options.
 
-\DeclareOption*{
+\DeclareOption*{%
     \PassOptionsToClass{\CurrentOption}{boostreport}}
 \ProcessOptions
 
-
-%* --[ Document Classes (some of the various classes available)
+%* Document Classes
 
 \LoadClass[article]{boostreport}
 
-%% End of package
+%% End of class
 \endinput % very last line
 
 % This is for the sake of Emacs.

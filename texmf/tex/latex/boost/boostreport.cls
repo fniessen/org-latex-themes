@@ -270,25 +270,34 @@
 
 % control layout of `itemize', `enumerate', `description'
 \RequirePackage{enumitem}% (not in medium TeX Live installation)
-\setlist{leftmargin=*,%
+\setlist{%
+    leftmargin=*,%
     labelsep=1.25cm,%
     itemindent=0pt,%
     topsep=5pt,%
     parsep=3pt}
 \setlist[itemize]{%
-    leftmargin=1.25em,
-    labelsep=0.75em,
-    itemsep=3pt,
-    topsep=4pt,
+    leftmargin=1.25em,%
+    labelsep=0.75em,%
+    itemsep=3pt,%
+    topsep=4pt,%
     parsep=0pt}
-\setitemize[1]{label=\textcolor{boost-color-brand}{\rule[.1ex]{1ex}{1ex}}}
-\setitemize[2]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\tikz{\fill (0,0) circle[radius=.35ex];}}}}
-\setitemize[3]{label=\textcolor{boost-color-brand}{\raisebox{.1ex}{\tikz{\draw[line width=.06ex] (0,0) circle[radius=.27ex];}}}}
+\setitemize[1]{%
+    label=\textcolor{boost-color-brand}{%
+        \rule[.1ex]{1ex}{1ex}}}
+\setitemize[2]{%
+    label=\textcolor{boost-color-brand}{%
+        \raisebox{.1ex}{%
+            \tikz{\fill (0,0) circle[radius=.35ex];}}}}
+\setitemize[3]{%
+    label=\textcolor{boost-color-brand}{%
+        \raisebox{.1ex}{%
+            \tikz{\draw[line width=.06ex] (0,0) circle[radius=.27ex];}}}}
 \setdescription{%
 %     style=nextline,
     font=\sffamily\bfseries,%
-    labelwidth=0pt,
-    labelsep=0.5em,
+    labelwidth=0pt,%
+    labelsep=0.5em,%
     leftmargin=1.45cm}
 
 \RequirePackage[framemethod=tikz]{mdframed}
