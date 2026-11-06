@@ -15,9 +15,9 @@
 \ProvidesClass{boostreport}[2023/05/23 v1.5 Pirilampo report class]
 
 
-% * --[ Documentation
+%* Documentation
 
-% See http://en.wikibooks.org/wiki/LaTeX  (= excellent!)
+% See https://en.wikibooks.org/wiki/LaTeX
 
 
 %* Requires
@@ -52,19 +52,13 @@
 %   - `final', for removing the DRAFT mentions
 %   - `black', for colorizing all titles and links in black only
 %   - `nocopyright', for removing the copyright symbol next to Boost in the footer
-%   - `hideboostcomment, do not print boostcomments
+%   - `hideboostcomment', do not print boostcomments
 %   - `anonym', do not print the Pirilampo logo and Boost in the footer
 %   - `minitoc', add a minitoc at each chapter, works only with book style
 %   - `french', sets the default document language to French (babel)
 
 
 %* Declarations
-
-% Check the `ifthen' Package. I use constructs like the following to blend
-% in/out certain parts:
-% \newboolean{grades}
-% \setboolean{grades}{true}
-% \ifthenelse{\boolean{grades}}{truepart}{falsepart}
 
 % create new conditionals
 \newif\if@article
@@ -130,48 +124,7 @@
 
 \ProcessOptions\relax% execute the options
 
-
-
-
-%** 2.3. Sections
-
-%** 2.4. TOC
-
-%** 2.5. References
-
-%** 3.2. Lists
-
-%** 3.3. Verbatim-like
-
-%** 3.4. Footnotes and marginal notes
-
-%** 3.5. Multiple columns
-
-%* 4. Page layout
-
-%* 5. Tabular
-
-%* 6. Floats
-
-%* 7. Fonts
-
-%* 8. Mathematics
-
-%* 9. Multilingual
-
-%* 10. Graphics
-
-%* 12. Index
-
-%* 13. Bibliography
-
-%* 14. Documentation tools
-
-
-
-
-
-%* Document Classes (some of the various classes available)
+%* Document Classes
 
 \if@article
     \LoadClass[a4paper,oneside,11pt]{article}
@@ -210,12 +163,6 @@
     bindingoffset=0cm,%
     footnotesep=24pt plus 5pt minus 5pt,
     head=27pt,% avoid "Package Fancyhdr Warning: \headheight is too small (12.0pt)"
-    % showframe,%  --> use showframe package instead?
-    % marginparwidth=65pt,%
-    % marginratio=1:1,%
-    % tmargin=126pt,%
-    % height=550pt,%
-    % width=400pt,%
 ]{geometry}
 
 % driver-independent color extensions
@@ -294,7 +241,6 @@
         \raisebox{.1ex}{%
             \tikz{\draw[line width=.06ex] (0,0) circle[radius=.27ex];}}}}
 \setdescription{%
-%     style=nextline,
     font=\sffamily\bfseries,%
     labelwidth=0pt,%
     labelsep=0.5em,%
@@ -318,7 +264,7 @@
     \end{orig@verbatim}%
     \end{mdframed}}
 
-% verb/verbatim in footnotesize (and darkgreen)
+% Verbatim font.
 \renewcommand{\verbatim@font}{%
     \ttfamily
     % \scriptsize
@@ -326,7 +272,7 @@
     }
 
 % allow wrapping of source table in LaTeX (see Emacs Org-mode's table editor)
-\usepackage{comment}% (not in medium TeX Live installation)
+\RequirePackage{comment}% (not in medium TeX Live installation)
 
 % smaller font size and colored background for quotes
 \renewenvironment{quote}
@@ -378,9 +324,6 @@
 
 % paragraph layout with zero `\parindent' and non-zero `\parskip'
 \RequirePackage{parskip}
-% instead of:
-%     \setlength{\parskip}{12pt}
-%     \setlength{\parindent}{0in}
 
 
 %* Margin Notes (putting remarks in the margin)
@@ -412,8 +355,8 @@
 % Define subtitle
 
 % Properly clear the global variables and commands
-% (is is more a convention to prevent confusion with
-% symbols defined at other scopes)
+% (this is more a convention to prevent confusion with symbols defined at other
+% scopes)
 \global\let\@subtitle\@empty
 \global\let\subtitle\relax
 
@@ -423,7 +366,6 @@
 
 % To customize the Pirilampo logo displayed in the title page, simply call the
 % \boosttitlegraphic{XXX} command.
-%\DeclareRobustCommand{\boosttitlegraphic}[1]{\def\@boosttitlegraphic{#1}}
 \newcommand{\boosttitlegraphic}[1]{\def\@boosttitlegraphic{#1}}
 \if@anonym%
     \boosttitlegraphic{}
@@ -451,76 +393,42 @@
     }\item[]}%
     {\end{list}}
 
-% TODO Plutôt que la commande \maketitle, qui est assez peu "customisable",
-% utiliser l'environnement titlepage...
-%
 \if@article
     \renewcommand{\maketitle}{%
         \thispagestyle{plain}
-         \begin{center}
-             \@titlegraphic\par
-             {\Huge \color{boost-color-document-title}\textbf{\@title}\par}%
-             \vskip 5mm
-             {\large \@author\par}%
-             {\large \@date\par}%
-         \end{center}
-     }
-\else
-\renewcommand{\maketitle}{%
-    \thispagestyle{empty}%
-    \begin{boostchangemargin}{-3.5cm}{0cm}% TODO Abstract it: add to boost lengths!
-        % amounts added to left and right margins:
-        % \newlength{\mylen}
-	% \setlength{\mylen}{1em plus 0.5em minus 0.5em}
-        % \addtolength{\mylen}{-3.5cm}
-
-        % \newlength{\colonnegauche}
-        % \newlength{\colonnedroite}
-        % \newlength{\milieu}
-        % \newlength{\margegauche}
-        % \newlength{\margedroite} % ne sert que pour les calculs
-
-        % \begin{document}
-        %% Les \setlength doivent figurer après le \begin{document} pour que
-        %% \linewidth ait sa vraie valeur. calc permet de donner facilement des
-        %% dimensions qui répondent à des critères complexes. Par exemple,
-        %% ici, je voulais que la reliure fasse la somme des marges et que la
-        %% colonne de droite prenne 60% de l'espace restant. Il ne reste donc
-        %% plus qu'à fixer en dur les deux marges.
-        %     \setlength{\margegauche}{1cm}%
-        % \setlength{\margedroite}{1cm}%
-        % \setlength{\milieu}{\margegauche+\margedroite}%
-        % \setlength{\colonnegauche}{%
-        % (\linewidth-\margedroite-\margegauche-\milieu)*\real{0.6}}
-        % \setlength{\colonnedroite}{%
-        % \linewidth-\margedroite-\margegauche-\milieu-\colonnegauche}
-
         \begin{center}
-            \leavevmode
             \@titlegraphic\par
-            \vspace{\stretch{2}}
-            \normalfont
             {\Huge \color{boost-color-document-title}\textbf{\@title}\par}%
             \vskip 5mm
-            \if@book
-            \else
-                {\large \@author\par}%
-            \fi
-            \vskip 2mm
+            {\large \@author\par}%
             {\large \@date\par}%
-            \vspace{\stretch{3}}
-            \@boosttitlegraphic
-        \end{center}%
-        % {\tiny
-        % Author: svnauthor \\
-        % Revision: svnrev \\
-        % Last changed on: svndate \\
-        % URL: \url{svnkw{HeadURL}}
-        % }
-    \end{boostchangemargin}
-    \null
-    \clearpage
-}
+        \end{center}
+    }
+\else
+    \renewcommand{\maketitle}{%
+        \thispagestyle{empty}%
+        \begin{boostchangemargin}{-3.5cm}{0cm}% TODO Abstract it: add to boost lengths!
+
+            \begin{center}
+                \leavevmode
+                \@titlegraphic\par
+                \vspace{\stretch{2}}
+                \normalfont
+                {\Huge \color{boost-color-document-title}\textbf{\@title}\par}%
+                \vskip 5mm
+                \if@book
+                \else
+                    {\large \@author\par}%
+                \fi
+                \vskip 2mm
+                {\large \@date\par}%
+                \vspace{\stretch{3}}
+                \@boosttitlegraphic
+            \end{center}%
+        \end{boostchangemargin}
+        \null
+        \clearpage
+    }
 \fi
 % TODO Put a document log in every report...
 
@@ -609,67 +517,6 @@
 
 %* Sectioning (how to section properly)
 
-% \renewcommand\part{%
-%     \if@openright
-%     \cleardoublepage
-%     \else
-%     \clearpage
-%     \fi
-%     \thispagestyle{empty}% was `plain'
-%     \if@twocolumn
-%     \onecolumn
-%     \@tempswatrue
-%     \else
-%     \@tempswafalse
-%     \fi
-%     \null\vfil
-%     \secdef\@part\@spart}
-
-%%     \newcommand{\partfont}{%
-%%     \fontencoding{\encodingdefault}\fontfamily{phv}%
-%%     \fontseries{bc}\fontshape{n}%
-%%     \fontsize{32}{38}%
-%%     \selectfont}
-
-%%     \DeclareFixedFont{\partnumfont}{T1}{phv}{bc}{n}{80}%
-
-%     \def\@part[#1]#2{%
-%     \ifnum \c@secnumdepth >-2\relax
-%     \refstepcounter{part}%
-%     \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-%     \else
-%     \addcontentsline{toc}{part}{#1}%
-%     \fi
-%     \markboth{}{}%
-%     {\centering
-%     \interlinepenalty \@M
-%     \normalfont
-%     \ifnum \c@secnumdepth >-2\relax
-%     \fontsize{80}{96}\selectfont \thepart % juste le numéro de la partie
-%     \par
-%     \vskip 50\p@% 50 point au lieu de 20...
-%     \fontsize{32}{38}\selectfont #2\par}% le titre avec une fonte personnalisée
-%     \@endpart}
-
-%     \def\@spart[#1]#2{%
-%     \ifnum \c@secnumdepth >-2\relax
-%     \refstepcounter{part}%
-%     \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-%     \else
-%     \addcontentsline{toc}{part}{#1}%
-%     \fi
-%     \markboth{}{}%
-%     {\centering
-%     \interlinepenalty \@M
-%     \normalfont
-%     \ifnum \c@secnumdepth >-2\relax
-%     \fontsize{80}{96}\selectfont \thepart % juste le numéro de la partie
-%     \par
-%     \vskip 50\p@% 50 point au lieu de 20...
-%     \fontsize{32}{38}\selectfont #2\par}% le titre avec une fonte personnalisée
-%     \@endpart}
-
-
 % control sectional headers
 \RequirePackage{sectsty}% (not in medium TeX Live installation)
 % redefine the font used for all section headings
@@ -701,7 +548,7 @@
 }
 
 % Defining the format of a paragraph heading (we want a line break).
-% Note: needed to redifine the whole font as when using the titleformat
+% Note: needed to redefine the whole font as when using the titleformat
 % command for the paragraph, the font selection done with allsectionsfont was
 % lost.
 \titleformat{\paragraph}[hang]
@@ -733,17 +580,9 @@
     \fi
 }
 
-%% TODO Replace the previous by this?
-% \titleformat{\section}
-% {\normalfont\Large\bfseries}{\thesection.}{1em}{}
-
 % discourage widows and orphans
 \widowpenalty=10000 % no widow lines (default value: 150)
 \clubpenalty=10000 % no orphan lines ("club lines" in LaTeX terminology, default value: 150)
-
-% It also helps to have rubber band values for the space between paragraphs:
-% \setlength{\parskip}{3ex plus 2ex minus 2ex}
-
 
 %* Spaces & Boxes (all the associated commands)
 
@@ -752,7 +591,7 @@
 \setstretch{1.2}
 
 % customize footnotes
-\usepackage[flushmargin]{footmisc}% (not in medium TeX Live installation)
+\RequirePackage[flushmargin]{footmisc}% (not in medium TeX Live installation)
 % must be loaded after `setspace'
 
 % standard graphics support
@@ -791,7 +630,6 @@
 %* Table of Contents (how to create a table of contents)
 
 \RequirePackage[dotinlabels]{titletoc}
-%\RequirePackage[toc]{multitoc}
 
 % Define TOC indentations
 \newlength{\boosttocindentlevelone}
@@ -939,39 +777,20 @@
 \newunicodechar{”}{\textquotedblright}
 \newunicodechar{’}{\textquoteright}
 
-% \RequirePackage[scaled=.90]{helvet}
-% \RequirePackage{courier}
-
-%% use regular Times at least (even if not Times New Roman)
-% \RequirePackage{mathptmx} % supersedes `times' (sets the text font
-%                           % to times *and* the math font to times)
-
 \ifxetex
     \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
     \setmainfont{Times New Roman}
     \setsansfont[Scale=MatchLowercase]{Tahoma}
     \setmonofont[Scale=MatchLowercase]{Courier New}
 \else
-\RequirePackage{times}%
+    \RequirePackage{times}%
 \fi%
-
-%% use scalable, PostScript Type 1 versions of the Computer Modern fonts
-% \RequirePackage{type1cm}
-
-%% replace the standard Computer Modern Typewriter font LaTeX uses for
-%% monospace text with the PostScript font Adobe Courier
-% \RequirePackage{courier}
-
-%% enable dingbat lists and symbols
-% \RequirePackage{pifont}
-
 
 % character protrusion and font expansion
 \ifxetex
 \else
     \RequirePackage{microtype} % reduces amount of hyphens
 \fi
-% \RequirePackage[babel=true,kerning=true]{microtype}
 
 % hyphenation in `texttt' mode (may not work in all situations)
 \DeclareRobustCommand\ttfamily%
@@ -979,7 +798,6 @@
 \fontfamily\ttdefault\selectfont\hyphenchar\font=`\-}
 
 % for Diamond symbol used by nuweb
-% \RequirePackage{latexsym}
 \RequirePackage{amsfonts}%
 
 % XXX 2010-04-02 Already defined in marvosym.sty
@@ -989,22 +807,17 @@
 
 %* Cross References (automatic referencing)
 
-% pour une url: \href{http://moi.com}{c'est moi} ou \url{http://perdu.com} Il
-% faut le paquet hyperref
-
 % verbatim with URL-sensitive line breaks (intended for email addresses,
 % hypertext links, directories/paths, etc.)
 \RequirePackage[obeyspaces,spaces]{url} % allows spaces as part of file names
-% check out how to change the url font
 
 \ifxetex
     \urlstyle{sf}
 \else
-% define a new `boost' style for the package that will use a smaller font
-\def\url@booststyle{%
-\@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\footnotesize\sffamily}}} % (XXX)
-% now, actually use the newly defined style
-\urlstyle{boost}%
+    % Use smaller sans-serif text for URLs.
+    \def\url@booststyle{%
+        \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\footnotesize\sffamily}}}
+    \urlstyle{boost}%
 \fi
 
 %% adds an additional page reference to `\ref'
@@ -1036,21 +849,6 @@
   urlcolor=boost-color-url,% color of external links
 }%
 
-%% We'll use the url{} command from the url package to typeset filenames
-%% (unlike \texttt{}, it allows hyphenation and line breaks, which is good --
-%% filenames can sometimes be long, and \texttt{alongfilename} = overfull
-%% hboxes (eg. stuff sticking out in the margins).
-% \RequirePackage[hyphens]{url}
-%% But, since hyperref redefines \Url, let's make an opaque copy of the
-%% command before loading hyperref
-% \let\noHyperUrl\Url
-
-% \let\orig@url\url
-% \renewcommand{\url}[1]{%
-% {\fontsize{10.7pt}{13.05pt}\orig@url{#1}}}
-
-% Find solutions in nolbreaks.sty.
-
 % allows the user to typeset a linkable and breakable URL
 \newcommand*{\urlw}[1]{%
     \href{http://www.#1}{\nolinkurl{www.#1}}}%
@@ -1059,7 +857,6 @@
 \IfFileExists{noweb.sty}{% then
     \RequirePackage{noweb}%
     \let\nowebsize=\scriptsize%
-    %     \noweboptions{smallcode}
 
     % Noweb is set up never to break chunks across pages. You can get better
     % results by relaxing this constraint
@@ -1098,53 +895,11 @@
 \RequirePackage{caption}%
 
 \RequirePackage{colortbl}%
-% \rowcolor[HTML]{99CCFF} = light blue
-
-% From the Visual FAQ:
-% \RequirePackage{etex}
-% \RequirePackage{lastpage}
-% \RequirePackage{lettrine}
-% \RequirePackage{tabularx}
-% \RequirePackage{supertabular}
-% \let\STtopcaption=\topcaption
-% \let\topcaption=\relax
-% \RequirePackage{topcapt}
-% \RequirePackage{layout}
-% \RequirePackage{wrapfig}
-% \RequirePackage{amsmath}
-% \RequirePackage{amssymb}
-% \RequirePackage{mathrsfs}
-% \RequirePackage{texnames}
-% \RequirePackage{bold-extra}
-% \RequirePackage{slashbox}
-% \RequirePackage{multirow}
-% \RequirePackage{afterpage}
-% \RequirePackage{eso-pic}
-% \RequirePackage{calc}
-% \RequirePackage{multicol}
-% \RequirePackage{rotating}
-% \RequirePackage{fancyvrb}
-% \RequirePackage{cancel}
-% \RequirePackage{amsthm}
-% \RequirePackage{cooltooltips}
-
-% \RequirePackage{textpos} % placement of boxes at absolute positions (for posters)
-
-% withpage
-% I find `glossaries' to be the best by far
 
 %% FIXME If book
 \RequirePackage{makeidx}%
 \makeindex % after compiling your LaTeX file, run `makeindex filename'
            % (without a file extension) and compile your LaTeX file again
-
-
-% Sometimes TeX allows a line to extend past the right margin. This is an
-% aesthetic decision on the part of TeX's author. The amount is determined by
-% the \hfuzz parameter, which defaults to 0.1 pt. If the text does not fit
-% within the line, the \tolerance parameter determines how TeX will handle the
-% overfull \hbox. The default value of \tolerance is 200. Setting \tolerance
-% to 1000 suppresses overfull \hbox warnings and the printing of slugs.
 
 
 \if@french%
@@ -1158,15 +913,7 @@
     \ClassInfo{boostreport}{Using english language}%
 \fi%
 
-% > Je cherche à utiliser un nouveau package à savoir "dropping", qui
-% > permet de produire la première lettre d'un nouveau paragraphe en
-% > taille supérieure.
-% Prends lettrine.
-
-%% FIXME Beep at end of compilation
-% \AtEndDocument{\typeout{$'\a'}}
-
-%% End of package
+%% End of class
 \endinput % very last line
 
 % This is for the sake of Emacs.
